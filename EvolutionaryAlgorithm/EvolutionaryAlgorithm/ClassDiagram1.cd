@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="EvolutionaryAlgorithm.Developmental_methods.AbstractTranslator" Collapsed="true">
+    <Position X="6.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Developmental methods\AbstractTranslator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EvolutionaryAlgorithm.Developmental_methods.ColonelBlottoTranslator" Collapsed="true">
+    <Position X="5.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Developmental methods\ColonelBlottoTranslator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EvolutionaryAlgorithm.Developmental_methods.OneMaxTranslator" Collapsed="true">
+    <Position X="7.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Developmental methods\OneMaxTranslator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EvolutionaryAlgorithm.Evaluators.AbstractFitnessEvaluator" Collapsed="true">
+    <Position X="1.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAARAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Evaluators\AbstractFitnessEvaluator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EvolutionaryAlgorithm.Evaluators.ColonelBlottoFitness" Collapsed="true">
+    <Position X="0.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAARAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Evaluators\ColonelBlottoFitness.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EvolutionaryAlgorithm.Evaluators.OneMaxFitness" Collapsed="true">
+    <Position X="2.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAARAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Evaluators\OneMaxFitness.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EvolutionaryAlgorithm.EvolutionaryAlgorithms.AbstractEA" Collapsed="true">
+    <Position X="6.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AiAAIAACAAAgAAAYCgAAACAAAQAAAAAAIAAAAAoAAAA=</HashCode>
+      <FileName>EvolutionaryAlgorithms\AbstractEA.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EvolutionaryAlgorithm.EvolutionaryAlgorithms.ColonelBlotto" Collapsed="true">
+    <Position X="5.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAABAAIAACAAAAAAAAAAAAAQgBAEgAAAAAAA=</HashCode>
+      <FileName>EvolutionaryAlgorithms\ColonelBlotto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EvolutionaryAlgorithm.EvolutionaryAlgorithms.OneMax" Collapsed="true">
+    <Position X="7.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EvolutionaryAlgorithms\OneMax.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EvolutionaryAlgorithm.Genetic_Operators.AbstractGeneticOperators" Collapsed="true">
+    <Position X="3" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Genetic Operators\AbstractGeneticOperators.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EvolutionaryAlgorithm.Genetic_Operators.BinaryOperators" Collapsed="true">
+    <Position X="3" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAE=</HashCode>
+      <FileName>Genetic Operators\BinaryOperators.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EvolutionaryAlgorithm.Genotypes.AbstractGenotype" Collapsed="true">
+    <Position X="0.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Genotypes\AbstractGenotype.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="EvolutionaryAlgorithm.Genotypes.BitVector" Collapsed="true">
+    <Position X="0.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Genotypes\BitVector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EvolutionaryAlgorithm.Gui" Collapsed="true">
+    <Position X="7" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAoCAEABUAAACAANgGABgqhAAACCAIABAAECA=</HashCode>
+      <FileName>Gui.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EvolutionaryAlgorithm.Program" Collapsed="true">
+    <Position X="6" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EvolutionaryAlgorithm.Phenotypes.AbstractPhenotype" Collapsed="true">
+    <Position X="1.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAgAAAAAAQAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Phenotypes\AbstractPhenotype.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="EvolutionaryAlgorithm.Phenotypes.ColonelBlottoPhenotype" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAIAAAAAIAAABAAAAgAAAAQAAAAQA=</HashCode>
+      <FileName>Phenotypes\ColonelBlottoPhenotype.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EvolutionaryAlgorithm.Phenotypes.OneMaxPhenotype" Collapsed="true">
+    <Position X="2.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Phenotypes\OneMaxPhenotype.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EvolutionaryAlgorithm.Populations.BinaryPopulation" Collapsed="true">
+    <Position X="5.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAABAABEAAAEAAAAAAAAAAAACAAAAE=</HashCode>
+      <FileName>Populations\BinaryPopulation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EvolutionaryAlgorithm.Selection_Mechanisms.AbstractSelectionMechanism" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAEAAAAABAAAAAAAAAE=</HashCode>
+      <FileName>Selection Mechanisms\AbstractSelectionMechanism.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EvolutionaryAlgorithm.Selection_Mechanisms.FitnessProportionate" Collapsed="true">
+    <Position X="5.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>Selection Mechanisms\FitnessProportionate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EvolutionaryAlgorithm.Selection_Mechanisms.Rank" Collapsed="true">
+    <Position X="7.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>Selection Mechanisms\Rank.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EvolutionaryAlgorithm.Selection_Mechanisms.SigmaScaling" Collapsed="true">
+    <Position X="0.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>Selection Mechanisms\SigmaScaling.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EvolutionaryAlgorithm.Selection_Mechanisms.Tournament" Collapsed="true">
+    <Position X="3" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAABAAAAAAAAAE=</HashCode>
+      <FileName>Selection Mechanisms\Tournament.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
