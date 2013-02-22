@@ -12,5 +12,9 @@ namespace EvolutionaryAlgorithm.Genotypes
             Vector = new List<int>();
         }
 
+        public List<int> GetRange(int index, int count)
+        {
+            return Vector.GetRange(index, count);
+        }
     }
 }
