@@ -51,10 +51,12 @@
     <Compile Include="Developmental methods\OneMaxTranslator.cs" />
     <Compile Include="Evaluators\AbstractFitnessEvaluator.cs" />
     <Compile Include="Evaluators\ColonelBlottoFitness.cs" />
+    <Compile Include="Evaluators\IzhikevichFitness.cs" />
     <Compile Include="Evaluators\OneMaxFitness.cs" />
     <Compile Include="EvolutionaryAlgorithms\AbstractEA.cs" />
     <Compile Include="EvolutionaryAlgorithms\ColonelBlotto.cs" />
     <Compile Include="EvolutionaryAlgorithms\OneMax.cs" />
+    <Compile Include="EvolutionaryAlgorithms\SpikingNeuron.cs" />
     <Compile Include="Genotypes\AbstractGenotype.cs" />
     <Compile Include="Gui.cs">
       <SubType>Form</SubType>

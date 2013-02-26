@@ -36,6 +36,7 @@ namespace EvolutionaryAlgorithm.Phenotypes
             const double tau = 10;
             for (int j = 0; j <= timeSteps; j++)
             {
+                Train.Add(v);
                 if (v > threshold)
                 {
                     v = c;
@@ -48,7 +49,7 @@ namespace EvolutionaryAlgorithm.Phenotypes
                     v = v + vDt;
                     u = u + uDt;
                 }
-                Train.Add(v);
+                
             }
         }
 

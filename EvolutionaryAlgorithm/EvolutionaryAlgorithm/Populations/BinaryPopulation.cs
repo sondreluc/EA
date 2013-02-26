@@ -70,7 +70,7 @@ namespace EvolutionaryAlgorithm.Populations
                         CurrentPopulation.Clear();
                         CurrentPopulation.AddRange(phenoOffsprings);
                         Offsprings.Clear();
-
+                        Evaluator.CalculatePopulationFitness(CurrentPopulation);
                         CurrentPopulation.Sort();
                         CurrentPopulation = CurrentPopulation.GetRange(0,size);
                         break;

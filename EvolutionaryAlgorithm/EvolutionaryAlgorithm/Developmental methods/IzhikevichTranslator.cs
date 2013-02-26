@@ -14,12 +14,12 @@ namespace EvolutionaryAlgorithm.Developmental_methods
         {
             //NB: Requires explicit size genom size of 33
             double a = binaryToDoubleRange(genom.GetRange(0,8), 0.001, 0.2); //200 values : 8 bit
-            double b = binaryToDoubleRange(genom.GetRange(8,13), 0.01, 0.3); // 30 values : 5 bit
-            double c = binaryToDoubleRange(genom.GetRange(13,19), -80, -20); // 51 values : 6 bit
-            double d = binaryToDoubleRange(genom.GetRange(19,26), 0.1, 10); // 100 values : 7 bit
-            double k = binaryToDoubleRange(genom.GetRange(26,33), 0.01, 1); // 100 values : 7 bit
+            double b = binaryToDoubleRange(genom.GetRange(8,5), 0.01, 0.3); // 30 values : 5 bit
+            double c = binaryToDoubleRange(genom.GetRange(13,6), -80, -20); // 51 values : 6 bit
+            double d = binaryToDoubleRange(genom.GetRange(19,7), 0.1, 10); // 100 values : 7 bit
+            double k = binaryToDoubleRange(genom.GetRange(26,7), 0.01, 1); // 100 values : 7 bit
 
-            return new IzhikevichPhenotype(a, b, c, d, k);
+            return new IzhikevichPhenotype(a, b, c, d, k){Genotype = genom, Fitness = 0.0, RouletteProportion = 0.0};
         }
 
 
