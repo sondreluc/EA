@@ -178,6 +178,10 @@ namespace EvolutionaryAlgorithm
                     outputTextBox.Text += "# Replacement fraction: " + replacfract + Environment.NewLine;
                     outputTextBox.Text += "# Loss fraction: " + lossfract + Environment.NewLine;
                 }
+                else if (problemBox.Text == "Izhikevich Spiking Neuron")
+                {
+                    //TODO
+                }
 
                 for (int i = 0; i < genes; i++)
                 {
@@ -292,6 +296,12 @@ namespace EvolutionaryAlgorithm
                     dataGridView1.Columns["Average strategy entropy"].Visible = true;
                     FitnessChart.ChartAreas["ChartArea2"].Visible = true;
 
+                    break;
+                case "Izhikevich Spiking Neuron":
+                    problemTextBox1.Visible = true;
+                    problemComboBox1.Visible = true;
+
+                    problemTextBox2.Visible = false;
                     break;
             }
         }

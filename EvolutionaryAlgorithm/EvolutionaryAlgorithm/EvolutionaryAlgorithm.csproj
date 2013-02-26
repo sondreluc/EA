@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Developmental methods\AbstractTranslator.cs" />
     <Compile Include="Developmental methods\ColonelBlottoTranslator.cs" />
+    <Compile Include="Developmental methods\IzhikevichTranslator.cs" />
     <Compile Include="Developmental methods\OneMaxTranslator.cs" />
     <Compile Include="Evaluators\AbstractFitnessEvaluator.cs" />
     <Compile Include="Evaluators\ColonelBlottoFitness.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="Genotypes\BitVector.cs" />
     <Compile Include="Phenotypes\AbstractPhenotype.cs" />
     <Compile Include="Phenotypes\ColonelBlottoPhenotype.cs" />
+    <Compile Include="Phenotypes\IzhikevichPhenotype.cs" />
     <Compile Include="Phenotypes\OneMaxPhenotype.cs" />
     <Compile Include="Populations\BinaryPopulation.cs" />
     <Compile Include="Program.cs" />
@@ -97,6 +99,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Training Data\izzy-train1.dat" />
+    <None Include="Training Data\izzy-train2.dat" />
+    <None Include="Training Data\izzy-train3.dat" />
+    <None Include="Training Data\izzy-train4.dat" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -149,7 +149,8 @@
             this.problemBox.FormattingEnabled = true;
             this.problemBox.Items.AddRange(new object[] {
             "OneMax",
-            "Colonel Blotto"});
+            "Colonel Blotto",
+            "Izhikevich Spiking Neuron"});
             this.problemBox.Location = new System.Drawing.Point(597, 292);
             this.problemBox.Name = "problemBox";
             this.problemBox.Size = new System.Drawing.Size(110, 21);
