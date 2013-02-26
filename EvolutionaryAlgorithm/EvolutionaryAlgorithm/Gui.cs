@@ -279,7 +279,7 @@ namespace EvolutionaryAlgorithm
                     FitnessChart.Series.FindByName("AvgEntropy").Enabled = false;
                     dataGridView1.Columns["Average strategy entropy"].Visible = false;
                     FitnessChart.ChartAreas["ChartArea2"].Visible = false;
-                   
+                    FitnessChart.Series.FindByName("SpikeTrain").Enabled = false;
 
                     break;
                 case "Colonel Blotto":
@@ -293,6 +293,7 @@ namespace EvolutionaryAlgorithm
                     problemComboBox1.Visible = false;
                     probLabel3.Text = probLabel4.Text = probLabel5.Text = probLabel6.Text = "";
                     FitnessChart.Series.FindByName("AvgEntropy").Enabled = true;
+                    FitnessChart.Series.FindByName("SpikeTrain").Enabled = false;
                     dataGridView1.Columns["Average strategy entropy"].Visible = true;
                     FitnessChart.ChartAreas["ChartArea2"].Visible = true;
 
@@ -300,7 +301,9 @@ namespace EvolutionaryAlgorithm
                 case "Izhikevich Spiking Neuron":
                     problemTextBox1.Visible = true;
                     problemComboBox1.Visible = true;
-
+                    FitnessChart.ChartAreas["ChartArea2"].Visible = true;
+                    FitnessChart.Series.FindByName("AvgEntropy").Enabled = false;
+                    FitnessChart.Series.FindByName("SpikeTrain").Enabled = true;
                     problemTextBox2.Visible = false;
                     break;
             }

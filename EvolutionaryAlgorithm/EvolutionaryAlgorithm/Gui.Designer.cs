@@ -36,6 +36,7 @@
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.FitnessChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -110,10 +111,17 @@
             series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
             series4.Legend = "Legend1";
             series4.Name = "AvgEntropy";
+            series5.BorderWidth = 2;
+            series5.ChartArea = "ChartArea2";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series5.Color = System.Drawing.Color.Red;
+            series5.Legend = "Legend1";
+            series5.Name = "SpikeTrain";
             this.FitnessChart.Series.Add(series1);
             this.FitnessChart.Series.Add(series2);
             this.FitnessChart.Series.Add(series3);
             this.FitnessChart.Series.Add(series4);
+            this.FitnessChart.Series.Add(series5);
             this.FitnessChart.Size = new System.Drawing.Size(971, 277);
             this.FitnessChart.TabIndex = 0;
             this.FitnessChart.Text = "Fitness Chart";
