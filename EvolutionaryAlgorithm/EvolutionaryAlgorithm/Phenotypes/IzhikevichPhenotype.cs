@@ -14,7 +14,7 @@ namespace EvolutionaryAlgorithm.Phenotypes
         public double d { get; private set; }
         public double k { get; private set; }
         public List<double> Train { get; set; }
-        public List<double> SpikeTimes { get; set; } 
+        public List<int> SpikeTimes { get; set; } 
 
         public IzhikevichPhenotype(double a, double b, double c, double d, double k)
         {

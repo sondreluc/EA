@@ -10,7 +10,7 @@ namespace EvolutionaryAlgorithm.Evaluators
     class IzhikevichFitness:AbstractFitnessEvaluator
     {
         public string SDM { get; set; }
-        public List<double> SpikeTimesDataSet { get; set; }
+        public List<int> SpikeTimesDataSet { get; set; }
         public List<double> DataSet { get; set; }
         public IzhikevichFitness(string sdm, List<double> dataSet)
         {
@@ -22,7 +22,7 @@ namespace EvolutionaryAlgorithm.Evaluators
         {
             var pheno = (IzhikevichPhenotype) phenotype;
             pheno.Train = new List<double>();
-            pheno.SpikeTimes = new List<double>();
+            pheno.SpikeTimes = new List<int>();
             pheno.MakeTrain();
             pheno.SpikeTimes = CalculateSpikeTimes(pheno.Train);
             const int p = 2;
@@ -48,24 +48,24 @@ namespace EvolutionaryAlgorithm.Evaluators
             }
         }
 
-        public List<double> CalculateSpikeTimes(List<double> train, int k = 5)
+        public List<int> CalculateSpikeTimes(List<double> train, int k = 5)
         {
-            const double threshold = 0;
-            var spikeTimes = new List<double>();
+            const double threshold = 0.0;
+            var spikeTimes = new List<int>();
             for (int i = 0; i < train.Count - k; i++)
             {
-                List<double> interval = train.GetRange(i, k);
+                var interval = train.GetRange(i, k);
                 var max = interval.Max();
-                var mid = interval.ElementAt((k / 2) + 1);
+                var mid = interval.ElementAt((k / 2));
                 if (mid >= max && mid > threshold)
                 {
-                    spikeTimes.Add(i + (k / 2) + 1);
+                    spikeTimes.Add(i + (k / 2));
                 }
             }
             return spikeTimes;
         }
 
-        public double TimeDistanceMetric(List<double> trainA, List<double> trainB, int p)
+        public double TimeDistanceMetric(List<int> trainA, List<int> trainB, int p)
         {
             var minCount = Math.Min(trainA.Count, trainB.Count);
             var maxCount = Math.Max(trainA.Count, trainB.Count);
@@ -83,12 +83,16 @@ namespace EvolutionaryAlgorithm.Evaluators
             var fitness = 0.0;
             if (minCount != 0)
             {
-                fitness = (1.0 / (1.0 + dst));
+                fitness = (1.0 / dst);
+            }
+            else if (minCount == maxCount)
+            {
+                fitness = 1.0;
             }
             return fitness;
         }
 
-        public double IntervalDistanceMetric(List<double> trainA, List<double> trainB, int p)
+        public double IntervalDistanceMetric(List<int> trainA, List<int> trainB, int p)
         {
             var minCount = Math.Min(trainA.Count, trainB.Count);
             var maxCount = Math.Max(trainA.Count, trainB.Count);
@@ -108,7 +112,11 @@ namespace EvolutionaryAlgorithm.Evaluators
             var fitness = 0.0;
             if (minCount > 1 )
             {
-                fitness = (1.0 / (1.0 + dst));
+                fitness = (1.0 / dst);
+            }
+            else if (minCount == 0 && minCount == maxCount)
+            {
+                fitness = 1.0;
             }
             return fitness;
         }

@@ -49,7 +49,7 @@ namespace EvolutionaryAlgorithm.EvolutionaryAlgorithms
             }
             GoalSpike = readDataSet(dataSetNumber);
             FitnessEvaluator = new IzhikevichFitness(sdm, GoalSpike);
-            Population = new BinaryPopulation(PopulationSize, 33, selectionProtocol, FitnessEvaluator, new IzhikevichTranslator(), 0, 2);
+            Population = new BinaryPopulation(PopulationSize, 35, selectionProtocol, FitnessEvaluator, new IzhikevichTranslator(), 0, 2);
             FitnessEvaluator.CalculatePopulationFitness(Population.CurrentPopulation);
         }
 

@@ -25,6 +25,7 @@ namespace EvolutionaryAlgorithm.Populations
             Evaluator = evaluator;
             Translator = translator;
             var individuals = new List<AbstractPhenotype>();
+            
             for (int i = 0; i < populationSize; i++)
             {
                 var genotype = new BitVector();
