@@ -13,16 +13,16 @@ namespace EvolutionaryAlgorithm
         [STAThread]
         static void Main()
         {
-            //Application.EnableVisualStyles();
-            //Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Gui());
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Gui());
 
-            SpikingNeuron sn = new SpikingNeuron(20, 50, 1, 0.1, 0.9, "A-I", "fitness-prop", "time");
-            sn.EvolutionLoop();
-            sn = new SpikingNeuron(20, 50, 1, 0.1, 0.9, "A-I", "fitness-prop", "interval");
-            sn.EvolutionLoop();
-            sn = new SpikingNeuron(20, 50, 1, 0.1, 0.9, "A-I", "fitness-prop", "waveform");
-            sn.EvolutionLoop();
+            //SpikingNeuron sn = new SpikingNeuron(20, 50, 1, 0.1, 0.9, "A-I", "fitness-prop", "time");
+            //sn.EvolutionLoop();
+            //sn = new SpikingNeuron(20, 50, 1, 0.1, 0.9, "A-I", "sigma", "interval");
+            //sn.EvolutionLoop();
+            //sn = new SpikingNeuron(20, 50, 1, 0.1, 0.9, "A-I", "tournament", "waveform");
+            //sn.EvolutionLoop();
           
         }
     }

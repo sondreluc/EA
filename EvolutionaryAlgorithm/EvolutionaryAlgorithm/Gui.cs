@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using EvolutionaryAlgorithm.EvolutionaryAlgorithms;
+using EvolutionaryAlgorithm.Phenotypes;
 
 namespace EvolutionaryAlgorithm
 {
@@ -10,6 +11,7 @@ namespace EvolutionaryAlgorithm
     {
 
         private static readonly Random Random = new Random();
+        private bool stop;
 
         public Gui()
         {
@@ -33,7 +35,6 @@ namespace EvolutionaryAlgorithm
             dataGridView1.ShowEditingIcon = false;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             FitnessChart.ChartAreas["ChartArea2"].Visible = false;
-
         }
 
         private void RunButtonClick(object sender, EventArgs e)
@@ -82,6 +83,10 @@ namespace EvolutionaryAlgorithm
             {
                 errorProvider1.SetError(problemTextBox2, "Fill in a double( 0 < x < 1 )");
             }
+            else if (problemBox.Text == "Izhikevich Spiking Neuron" && string.IsNullOrEmpty(problemComboBox1.Text))
+            {
+                errorProvider1.SetError(problemComboBox1, "Select spike distence metric");
+            }
             else
             {
                 errorProvider1.Clear();
@@ -122,6 +127,7 @@ namespace EvolutionaryAlgorithm
 
                 OneMax oneMax = null;
                 ColonelBlotto colonelBlotto = null;
+                SpikingNeuron sn = null;
                 List<int> oneMaxGoalVector = new List<int>();
                 if (problemBox.Text == "OneMax")
                 {
@@ -143,9 +149,14 @@ namespace EvolutionaryAlgorithm
                     oneMax = new OneMax(popSize, genes, oneMaxGoalVector, mutRate, xOverRate, prot, mech);
                 }
 
-                else 
+                else if (problemBox.Text == "Colonel Blotto")
                 {
                     colonelBlotto = new ColonelBlotto(popSize, genes, genoSize, mutRate, xOverRate, prot, mech, replacfract, lossfract);
+                }
+                 
+                else 
+                {
+                    sn = new SpikingNeuron(popSize, genes,Convert.ToInt16(problemComboBox2.Text), mutRate, xOverRate, prot, mech, problemComboBox1.Text);
                 }
 
 
@@ -178,14 +189,18 @@ namespace EvolutionaryAlgorithm
                     outputTextBox.Text += "# Replacement fraction: " + replacfract + Environment.NewLine;
                     outputTextBox.Text += "# Loss fraction: " + lossfract + Environment.NewLine;
                 }
-                else if (problemBox.Text == "Izhikevich Spiking Neuron")
+                else if (problemBox.Text == "Izhikevich Spiking Neuron" && sn != null)
                 {
-                    //TODO
+                    SpikeTrainChart.Series["Goal Train"].Points.Clear();
+                    for (var i=0; i < sn.GoalSpike.Count-1; i++)
+                    {
+                        SpikeTrainChart.Series["Goal Train"].Points.AddXY(i, sn.GoalSpike.ElementAt(i));
+                    }
+                    Update();
                 }
-
+                var best = 0.0;
                 for (int i = 0; i < genes; i++)
                 {
-
                     System.Threading.Thread.Sleep(sleepTime);
                     if (problemBox.Text == "OneMax" && oneMax != null)
                     {
@@ -247,7 +262,59 @@ namespace EvolutionaryAlgorithm
 
                         Update();
 
-                
+                    }
+                    else if (problemBox.Text == "Izhikevich Spiking Neuron" && sn != null)
+                    {
+                        
+                        sn.Evolve();
+                        
+                        FitnessChart.Series["Highest fitness"].Points.AddXY
+                                (i, sn.High);
+                        FitnessChart.Series["Average fitness"].Points.AddXY
+                            (i, sn.Average);
+                        FitnessChart.Series["Standard deviation"].Points.AddXY
+                            (i, sn.SD);
+                        dataGridView1.Rows.Add(i + 1, sn.High, sn.Average, sn.SD);
+                        dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.RowCount - 1;
+                        dataGridView1.Refresh();
+                        //foreach (IzhikevichPhenotype phenotype in sn.Population.CurrentPopulation)
+                        //{
+                        //    SpikeTrainChart.Series["Best of run Spike Train"].Points.Clear();
+                        //    for (var j = 0; j < phenotype.Train.Count - 1; j++)
+                        //    {
+                        //        SpikeTrainChart.Series["Best of run Spike Train"].Points.AddXY(j,
+                        //                                                                       phenotype.Train
+                        //                                                                         .ElementAt(j));
+                        //    }
+                        //    SpikeTrainChart.Legends.FindByName("Legend1").CustomItems.FirstOrDefault(x => x.Name == "Fitness").Cells.Last().Text = phenotype.Fitness.ToString();
+                        //    SpikeTrainChart.Legends.FindByName("Legend1").CustomItems.FirstOrDefault(x => x.Name == "a").Cells.Last().Text = phenotype.a.ToString();
+                        //    SpikeTrainChart.Legends.FindByName("Legend1").CustomItems.FirstOrDefault(x => x.Name == "b").Cells.Last().Text = phenotype.b.ToString();
+                        //    SpikeTrainChart.Legends.FindByName("Legend1").CustomItems.FirstOrDefault(x => x.Name == "c").Cells.Last().Text = phenotype.c.ToString();
+                        //    SpikeTrainChart.Legends.FindByName("Legend1").CustomItems.FirstOrDefault(x => x.Name == "d").Cells.Last().Text = phenotype.d.ToString();
+                        //    SpikeTrainChart.Legends.FindByName("Legend1").CustomItems.FirstOrDefault(x => x.Name == "k").Cells.Last().Text = phenotype.k.ToString();
+                        //    Update();
+                        //}
+
+                        if (best < sn.BestOfRun.Fitness)
+                        {
+                            best = sn.BestOfRun.Fitness;
+                            SpikeTrainChart.Series["Best of run Spike Train"].Points.Clear();
+                            for (var j = 0; j < sn.BestOfRun.Train.Count - 1; j++)
+                            {
+                                SpikeTrainChart.Series["Best of run Spike Train"].Points.AddXY(j,
+                                                                                               sn.BestOfRun.Train
+                                                                                                 .ElementAt(j));
+                            }
+                            SpikeTrainChart.Legends.FindByName("Legend1").CustomItems.FirstOrDefault(x => x.Name == "Fitness").Cells.Last().Text = sn.BestOfRun.Fitness.ToString();
+                            SpikeTrainChart.Legends.FindByName("Legend1").CustomItems.FirstOrDefault(x => x.Name == "a").Cells.Last().Text = sn.BestOfRun.a.ToString();
+                            SpikeTrainChart.Legends.FindByName("Legend1").CustomItems.FirstOrDefault(x => x.Name == "b").Cells.Last().Text = sn.BestOfRun.b.ToString();
+                            SpikeTrainChart.Legends.FindByName("Legend1").CustomItems.FirstOrDefault(x => x.Name == "c").Cells.Last().Text = sn.BestOfRun.c.ToString();
+                            SpikeTrainChart.Legends.FindByName("Legend1").CustomItems.FirstOrDefault(x => x.Name == "d").Cells.Last().Text = sn.BestOfRun.d.ToString();
+                            SpikeTrainChart.Legends.FindByName("Legend1").CustomItems.FirstOrDefault(x => x.Name == "k").Cells.Last().Text = sn.BestOfRun.k.ToString();
+                        }
+
+                        Update();
+  
                     }
                     outputTextBox.Select(outputTextBox.Text.Length - 1, 0);
                     outputTextBox.ScrollToCaret();
@@ -266,10 +333,13 @@ namespace EvolutionaryAlgorithm
             {
                 case "OneMax":
                     label2.Text = "Genotype size";
+                    genotypeSize.Text = "40";
+                    genotypeSize.ReadOnly = false;
                     probLabel1.Text = "Goal vector";
                     probLabel1.Visible = true;
                     problemComboBox1.Location = problemTextBox1.Location;
                     problemComboBox1.Visible = true;
+                    problemComboBox1.Items.Clear();
                     problemComboBox1.Items.Add("Ones(1) vector");
                     problemComboBox1.Items.Add("Random vector");
                     problemTextBox2.Visible =
@@ -279,11 +349,13 @@ namespace EvolutionaryAlgorithm
                     FitnessChart.Series.FindByName("AvgEntropy").Enabled = false;
                     dataGridView1.Columns["Average strategy entropy"].Visible = false;
                     FitnessChart.ChartAreas["ChartArea2"].Visible = false;
-                    FitnessChart.Series.FindByName("SpikeTrain").Enabled = false;
-
+                    FitnessChart.Width = 980;
+                    SpikeTrainChart.Visible = false;
                     break;
                 case "Colonel Blotto":
                     label2.Text = "Number of battles";
+                    genotypeSize.Text = "10";
+                    genotypeSize.ReadOnly = false;
                     probLabel1.Text = "Reployment fraction";
                     problemTextBox1.Visible = true;
                     problemTextBox1.Text = "1,0";
@@ -293,18 +365,37 @@ namespace EvolutionaryAlgorithm
                     problemComboBox1.Visible = false;
                     probLabel3.Text = probLabel4.Text = probLabel5.Text = probLabel6.Text = "";
                     FitnessChart.Series.FindByName("AvgEntropy").Enabled = true;
-                    FitnessChart.Series.FindByName("SpikeTrain").Enabled = false;
                     dataGridView1.Columns["Average strategy entropy"].Visible = true;
                     FitnessChart.ChartAreas["ChartArea2"].Visible = true;
-
+                    FitnessChart.Width = 980;
+                    SpikeTrainChart.Visible = false;
                     break;
                 case "Izhikevich Spiking Neuron":
-                    problemTextBox1.Visible = true;
-                    problemComboBox1.Visible = true;
                     FitnessChart.ChartAreas["ChartArea2"].Visible = true;
                     FitnessChart.Series.FindByName("AvgEntropy").Enabled = false;
-                    FitnessChart.Series.FindByName("SpikeTrain").Enabled = true;
-                    problemTextBox2.Visible = false;
+                    probLabel1.Text = "SDM";
+                    probLabel1.Visible = true;
+                    problemComboBox1.Location = problemTextBox1.Location;
+                    problemComboBox1.Visible = true;
+                    problemComboBox1.Items.Clear();
+                    problemComboBox1.Items.Add("Time");
+                    problemComboBox1.Items.Add("Interval");
+                    problemComboBox1.Items.Add("Waveform");
+                    problemComboBox2.Location = problemTextBox2.Location;
+                    problemComboBox2.Visible = true;
+                    problemComboBox2.Items.Clear();
+                    problemComboBox2.Items.Add("1");
+                    problemComboBox2.Items.Add("2");
+                    problemComboBox2.Items.Add("3");
+                    problemComboBox2.Items.Add("4");
+                    probLabel2.Text = "Dataset";
+                    probLabel2.Visible = true;
+                    FitnessChart.ChartAreas["ChartArea2"].Visible = false;
+                    FitnessChart.Width = 492;
+                    SpikeTrainChart.Visible = true;
+                    dataGridView1.Columns["Average strategy entropy"].Visible = false;
+                    genotypeSize.Text = "33";
+                    genotypeSize.ReadOnly = true;
                     break;
             }
         }

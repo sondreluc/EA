@@ -29,15 +29,37 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.LegendItem legendItem7 = new System.Windows.Forms.DataVisualization.Charting.LegendItem();
+            System.Windows.Forms.DataVisualization.Charting.LegendCell legendCell13 = new System.Windows.Forms.DataVisualization.Charting.LegendCell();
+            System.Windows.Forms.DataVisualization.Charting.LegendCell legendCell14 = new System.Windows.Forms.DataVisualization.Charting.LegendCell();
+            System.Windows.Forms.DataVisualization.Charting.LegendItem legendItem8 = new System.Windows.Forms.DataVisualization.Charting.LegendItem();
+            System.Windows.Forms.DataVisualization.Charting.LegendCell legendCell15 = new System.Windows.Forms.DataVisualization.Charting.LegendCell();
+            System.Windows.Forms.DataVisualization.Charting.LegendCell legendCell16 = new System.Windows.Forms.DataVisualization.Charting.LegendCell();
+            System.Windows.Forms.DataVisualization.Charting.LegendItem legendItem9 = new System.Windows.Forms.DataVisualization.Charting.LegendItem();
+            System.Windows.Forms.DataVisualization.Charting.LegendCell legendCell17 = new System.Windows.Forms.DataVisualization.Charting.LegendCell();
+            System.Windows.Forms.DataVisualization.Charting.LegendCell legendCell18 = new System.Windows.Forms.DataVisualization.Charting.LegendCell();
+            System.Windows.Forms.DataVisualization.Charting.LegendItem legendItem10 = new System.Windows.Forms.DataVisualization.Charting.LegendItem();
+            System.Windows.Forms.DataVisualization.Charting.LegendCell legendCell19 = new System.Windows.Forms.DataVisualization.Charting.LegendCell();
+            System.Windows.Forms.DataVisualization.Charting.LegendCell legendCell20 = new System.Windows.Forms.DataVisualization.Charting.LegendCell();
+            System.Windows.Forms.DataVisualization.Charting.LegendItem legendItem11 = new System.Windows.Forms.DataVisualization.Charting.LegendItem();
+            System.Windows.Forms.DataVisualization.Charting.LegendCell legendCell21 = new System.Windows.Forms.DataVisualization.Charting.LegendCell();
+            System.Windows.Forms.DataVisualization.Charting.LegendCell legendCell22 = new System.Windows.Forms.DataVisualization.Charting.LegendCell();
+            System.Windows.Forms.DataVisualization.Charting.LegendItem legendItem12 = new System.Windows.Forms.DataVisualization.Charting.LegendItem();
+            System.Windows.Forms.DataVisualization.Charting.LegendCell legendCell23 = new System.Windows.Forms.DataVisualization.Charting.LegendCell();
+            System.Windows.Forms.DataVisualization.Charting.LegendCell legendCell24 = new System.Windows.Forms.DataVisualization.Charting.LegendCell();
+            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title4 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.FitnessChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.run_button = new System.Windows.Forms.Button();
@@ -61,6 +83,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.populationSize = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.problemComboBox2 = new System.Windows.Forms.ComboBox();
             this.problemComboBox1 = new System.Windows.Forms.ComboBox();
             this.problemTextBox6 = new System.Windows.Forms.TextBox();
             this.problemTextBox5 = new System.Windows.Forms.TextBox();
@@ -74,61 +97,56 @@
             this.probLabel2 = new System.Windows.Forms.Label();
             this.probLabel1 = new System.Windows.Forms.Label();
             this.problemTextBox1 = new System.Windows.Forms.TextBox();
+            this.SpikeTrainChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.FitnessChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SpikeTrainChart)).BeginInit();
             this.SuspendLayout();
             // 
             // FitnessChart
             // 
-            chartArea1.Name = "ChartArea1";
-            chartArea2.Name = "ChartArea2";
-            this.FitnessChart.ChartAreas.Add(chartArea1);
-            this.FitnessChart.ChartAreas.Add(chartArea2);
-            legend1.Name = "Legend1";
-            this.FitnessChart.Legends.Add(legend1);
+            chartArea4.Name = "ChartArea1";
+            chartArea5.Name = "ChartArea2";
+            this.FitnessChart.ChartAreas.Add(chartArea4);
+            this.FitnessChart.ChartAreas.Add(chartArea5);
+            legend3.Name = "Legend1";
+            this.FitnessChart.Legends.Add(legend3);
             this.FitnessChart.Location = new System.Drawing.Point(12, 12);
             this.FitnessChart.Name = "FitnessChart";
-            series1.BorderWidth = 2;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series1.Legend = "Legend1";
-            series1.Name = "Highest fitness";
-            series2.BorderWidth = 2;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series2.Legend = "Legend1";
-            series2.Name = "Average fitness";
-            series3.BorderWidth = 2;
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series3.Legend = "Legend1";
-            series3.Name = "Standard deviation";
-            series4.BorderWidth = 2;
-            series4.ChartArea = "ChartArea2";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series4.Legend = "Legend1";
-            series4.Name = "AvgEntropy";
-            series5.BorderWidth = 2;
-            series5.ChartArea = "ChartArea2";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series5.Color = System.Drawing.Color.Red;
-            series5.Legend = "Legend1";
-            series5.Name = "SpikeTrain";
-            this.FitnessChart.Series.Add(series1);
-            this.FitnessChart.Series.Add(series2);
-            this.FitnessChart.Series.Add(series3);
-            this.FitnessChart.Series.Add(series4);
-            this.FitnessChart.Series.Add(series5);
-            this.FitnessChart.Size = new System.Drawing.Size(971, 277);
+            series7.BorderWidth = 2;
+            series7.ChartArea = "ChartArea1";
+            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series7.Legend = "Legend1";
+            series7.Name = "Highest fitness";
+            series8.BorderWidth = 2;
+            series8.ChartArea = "ChartArea1";
+            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series8.Legend = "Legend1";
+            series8.Name = "Average fitness";
+            series9.BorderWidth = 2;
+            series9.ChartArea = "ChartArea1";
+            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series9.Legend = "Legend1";
+            series9.Name = "Standard deviation";
+            series10.BorderWidth = 2;
+            series10.ChartArea = "ChartArea2";
+            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series10.Legend = "Legend1";
+            series10.Name = "AvgEntropy";
+            this.FitnessChart.Series.Add(series7);
+            this.FitnessChart.Series.Add(series8);
+            this.FitnessChart.Series.Add(series9);
+            this.FitnessChart.Series.Add(series10);
+            this.FitnessChart.Size = new System.Drawing.Size(492, 277);
             this.FitnessChart.TabIndex = 0;
             this.FitnessChart.Text = "Fitness Chart";
-            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title1.Name = "Title1";
-            title1.Text = "Fitness chart";
-            this.FitnessChart.Titles.Add(title1);
+            title3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title3.Name = "Title1";
+            title3.Text = "Fitness chart";
+            this.FitnessChart.Titles.Add(title3);
             // 
             // dataGridView1
             // 
@@ -345,6 +363,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.problemComboBox2);
             this.groupBox2.Controls.Add(this.problemComboBox1);
             this.groupBox2.Controls.Add(this.problemTextBox6);
             this.groupBox2.Controls.Add(this.problemTextBox5);
@@ -365,6 +384,15 @@
             this.groupBox2.TabIndex = 20;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Problem-Parameters";
+            // 
+            // problemComboBox2
+            // 
+            this.problemComboBox2.FormattingEnabled = true;
+            this.problemComboBox2.Location = new System.Drawing.Point(120, 121);
+            this.problemComboBox2.Name = "problemComboBox2";
+            this.problemComboBox2.Size = new System.Drawing.Size(89, 21);
+            this.problemComboBox2.TabIndex = 16;
+            this.problemComboBox2.Visible = false;
             // 
             // problemComboBox1
             // 
@@ -481,9 +509,81 @@
             this.problemTextBox1.Tag = "";
             this.problemTextBox1.Visible = false;
             // 
+            // SpikeTrainChart
+            // 
+            chartArea6.Name = "ChartArea1";
+            this.SpikeTrainChart.ChartAreas.Add(chartArea6);
+            legendCell13.Name = "Cell1";
+            legendCell13.Text = "Fitness";
+            legendCell14.Name = "Cell2";
+            legendCell14.Text = "max";
+            legendItem7.Cells.Add(legendCell13);
+            legendItem7.Cells.Add(legendCell14);
+            legendItem7.Name = "Fitness";
+            legendCell15.Name = "Cell1";
+            legendCell15.Text = "A";
+            legendCell16.Name = "Cell2";
+            legendItem8.Cells.Add(legendCell15);
+            legendItem8.Cells.Add(legendCell16);
+            legendItem8.Name = "a";
+            legendCell17.Name = "Cell1";
+            legendCell17.Text = "B";
+            legendCell18.Name = "Cell2";
+            legendItem9.Cells.Add(legendCell17);
+            legendItem9.Cells.Add(legendCell18);
+            legendItem9.Name = "b";
+            legendCell19.Name = "Cell1";
+            legendCell19.Text = "C";
+            legendCell20.Name = "Cell2";
+            legendItem10.Cells.Add(legendCell19);
+            legendItem10.Cells.Add(legendCell20);
+            legendItem10.Name = "c";
+            legendCell21.Name = "Cell1";
+            legendCell21.Text = "D";
+            legendCell22.Name = "Cell2";
+            legendItem11.Cells.Add(legendCell21);
+            legendItem11.Cells.Add(legendCell22);
+            legendItem11.Name = "d";
+            legendCell23.Name = "Cell1";
+            legendCell23.Text = "K";
+            legendCell24.Name = "Cell2";
+            legendItem12.Cells.Add(legendCell23);
+            legendItem12.Cells.Add(legendCell24);
+            legendItem12.Name = "k";
+            legend4.CustomItems.Add(legendItem7);
+            legend4.CustomItems.Add(legendItem8);
+            legend4.CustomItems.Add(legendItem9);
+            legend4.CustomItems.Add(legendItem10);
+            legend4.CustomItems.Add(legendItem11);
+            legend4.CustomItems.Add(legendItem12);
+            legend4.Name = "Legend1";
+            this.SpikeTrainChart.Legends.Add(legend4);
+            this.SpikeTrainChart.Location = new System.Drawing.Point(510, 12);
+            this.SpikeTrainChart.Name = "SpikeTrainChart";
+            series11.BorderWidth = 2;
+            series11.ChartArea = "ChartArea1";
+            series11.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series11.Legend = "Legend1";
+            series11.Name = "Goal Train";
+            series12.ChartArea = "ChartArea1";
+            series12.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series12.Color = System.Drawing.Color.Red;
+            series12.Legend = "Legend1";
+            series12.Name = "Best of run Spike Train";
+            this.SpikeTrainChart.Series.Add(series11);
+            this.SpikeTrainChart.Series.Add(series12);
+            this.SpikeTrainChart.Size = new System.Drawing.Size(482, 277);
+            this.SpikeTrainChart.TabIndex = 22;
+            this.SpikeTrainChart.Text = "Spike Train";
+            title4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title4.Name = "Title1";
+            title4.Text = "Spike Train";
+            this.SpikeTrainChart.Titles.Add(title4);
+            // 
             // Gui
             // 
-            this.ClientSize = new System.Drawing.Size(995, 544);
+            this.ClientSize = new System.Drawing.Size(1004, 544);
+            this.Controls.Add(this.SpikeTrainChart);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label7);
@@ -500,6 +600,7 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SpikeTrainChart)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -543,6 +644,8 @@
         private System.Windows.Forms.Label probLabel2;
         private System.Windows.Forms.Label probLabel1;
         private System.Windows.Forms.TextBox problemTextBox1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart SpikeTrainChart;
+        private System.Windows.Forms.ComboBox problemComboBox2;
 
     }
 }

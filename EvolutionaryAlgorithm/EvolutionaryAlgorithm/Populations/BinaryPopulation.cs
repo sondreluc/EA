@@ -18,6 +18,7 @@ namespace EvolutionaryAlgorithm.Populations
         public string SelectionProtocol { get; set; }
         public AbstractFitnessEvaluator Evaluator { get; set; }
 
+
         public BinaryPopulation(int populationSize, int genotypeSize, string selectionProtocol, AbstractFitnessEvaluator evaluator, AbstractTranslator translator, int intervalStart, int intervalEnd)
         {
             _random = new Random();
@@ -72,14 +73,14 @@ namespace EvolutionaryAlgorithm.Populations
                         Offsprings.Clear();
                         Evaluator.CalculatePopulationFitness(CurrentPopulation);
                         CurrentPopulation.Sort();
-                        CurrentPopulation = CurrentPopulation.GetRange(0,size);
+                        CurrentPopulation = CurrentPopulation.GetRange(CurrentPopulation.Count - size - 1,size);
                         break;
                     case "A-III":
                         Evaluator.CalculatePopulationFitness(phenoOffsprings);
 
                         CurrentPopulation.AddRange(phenoOffsprings);
                         CurrentPopulation.Sort();
-                        CurrentPopulation = CurrentPopulation.GetRange(0,size);
+                        CurrentPopulation = CurrentPopulation.GetRange(CurrentPopulation.Count - size-1, size);
                         break;
                 }
             }

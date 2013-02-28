@@ -34,21 +34,23 @@ namespace EvolutionaryAlgorithm.Phenotypes
             const double threshold = 35.0;
             const double I = 10;
             const double tau = 10;
-            for (int j = 0; j <= timeSteps; j++)
+            Train.Add(v);
+            for (int j = 1; j <= timeSteps; j++)
             {
-                Train.Add(v);
                 if (v > threshold)
                 {
                     v = c;
                     u = u + d;
                 }
-                else
-                {
-                    double vDt = ((k*Math.Pow(v, 2)) + 5*v + 140 - u + I)/tau;
-                    double uDt = (a*(b*v - u))/tau;
-                    v = v + vDt;
-                    u = u + uDt;
-                }
+
+                double kv2 = (k*Math.Pow(v, 2));
+                double v5 = (5*v);
+                double vDt = (kv2 + v5 + 140 - u + I)/tau;
+                double uDt = (a*((b*v) - u))/tau;
+                v = v + vDt;
+                u = u + uDt;
+
+                Train.Add(v);
                 
             }
         }

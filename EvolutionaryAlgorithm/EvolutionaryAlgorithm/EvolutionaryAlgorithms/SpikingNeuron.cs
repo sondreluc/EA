@@ -1,6 +1,7 @@
 ﻿using EvolutionaryAlgorithm.Developmental_methods;
 using EvolutionaryAlgorithm.Evaluators;
 using EvolutionaryAlgorithm.Genetic_Operators;
+using EvolutionaryAlgorithm.Phenotypes;
 using EvolutionaryAlgorithm.Populations;
 using EvolutionaryAlgorithm.Selection_Mechanisms;
 using System;
@@ -15,6 +16,8 @@ namespace EvolutionaryAlgorithm.EvolutionaryAlgorithms
     class SpikingNeuron:AbstractEA
     {
         public List<double> GoalSpike;
+        public IzhikevichPhenotype BestOfRun { get; set; }
+
         public SpikingNeuron(int populationSize, int generations, int dataSetNumber,
                       double mutationRate, double crossoverRate, string selectionProtocol, string selectionMechanism, string sdm)
         {
@@ -72,9 +75,16 @@ namespace EvolutionaryAlgorithm.EvolutionaryAlgorithms
         {
             for (int i = 0; i < Generations; i++)
             {
-                var max = Population.CurrentPopulation.Max(x => x.Fitness);
-                System.Diagnostics.Debug.WriteLine(max);
                 Evolve();
+                foreach (var value in BestOfRun.Train)
+                {
+                    System.Diagnostics.Debug.Write(value+" ");
+                    
+                }
+                System.Diagnostics.Debug.WriteLine("");
+                System.Diagnostics.Debug.WriteLine("A: " + BestOfRun.a + ", B: "+BestOfRun.b + ", C: "+BestOfRun.c + ", D: "+BestOfRun.d + ", K: "+BestOfRun.k);
+                System.Diagnostics.Debug.WriteLine("");
+                
             }
         }
 
@@ -90,6 +100,12 @@ namespace EvolutionaryAlgorithm.EvolutionaryAlgorithms
                 ParentSelector.NormalizeRouletteWheel(Population.CurrentPopulation);
             }
             GenerateOffspring();
+
+            High = Population.CurrentPopulation.Max(x => x.Fitness);
+            BestOfRun = (IzhikevichPhenotype)Population.CurrentPopulation.FirstOrDefault(x => x.Fitness >= High);
+            Average = Population.CurrentPopulation.Average(x => x.Fitness);
+            SD = Math.Sqrt(Population.CurrentPopulation.Sum(x => Math.Pow((x.Fitness - Average), 2)) /
+                      Population.CurrentPopulation.Count);
         }
     }
 }
