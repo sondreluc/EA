@@ -42,14 +42,15 @@ namespace EvolutionaryAlgorithm.Phenotypes
                     v = c;
                     u = u + d;
                 }
-
-                double kv2 = (k*Math.Pow(v, 2));
-                double v5 = (5*v);
-                double vDt = (kv2 + v5 + 140 - u + I)/tau;
-                double uDt = (a*((b*v) - u))/tau;
-                v = v + vDt;
-                u = u + uDt;
-
+                else
+                {
+                    double kv2 = (k*Math.Pow(v, 2));
+                    double v5 = (5*v);
+                    double vDt = (kv2 + v5 + 140 - u + I)/tau;
+                    double uDt = (a*((b*v) - u))/tau;
+                    v = v + vDt;
+                    u = u + uDt;
+                }
                 Train.Add(v);
                 
             }
