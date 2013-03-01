@@ -17,6 +17,9 @@ namespace EvolutionaryAlgorithm.EvolutionaryAlgorithms
     {
         public List<double> GoalSpike;
         public IzhikevichPhenotype BestOfRun { get; set; }
+        public int K { get; set; }
+        public int J { get; set; }
+        public double PrevFitness { get; set; }
 
         public SpikingNeuron(int populationSize, int generations, int dataSetNumber,
                       double mutationRate, double crossoverRate, string selectionProtocol, string selectionMechanism, string sdm)
@@ -27,6 +30,10 @@ namespace EvolutionaryAlgorithm.EvolutionaryAlgorithms
             Generations = generations;
             MutationRate = mutationRate;
             CrossoverRate = crossoverRate;
+
+            K = 0;
+            J = 0;
+            PrevFitness = 0.0;
             
             switch (selectionMechanism.ToLower())
             {
@@ -103,9 +110,36 @@ namespace EvolutionaryAlgorithm.EvolutionaryAlgorithms
 
             High = Population.CurrentPopulation.Max(x => x.Fitness);
             BestOfRun = (IzhikevichPhenotype)Population.CurrentPopulation.FirstOrDefault(x => x.Fitness >= High);
+           // updateMutationRate();
             Average = Population.CurrentPopulation.Average(x => x.Fitness);
             SD = Math.Sqrt(Population.CurrentPopulation.Sum(x => Math.Pow((x.Fitness - Average), 2)) /
                       Population.CurrentPopulation.Count);
+        }
+
+        private void updateMutationRate()
+        {
+            if (High == PrevFitness)
+            {
+                K++;
+                J = 0;
+            }
+            else
+            {
+                J++;
+                K = 0;
+            }
+            PrevFitness = High;
+
+            if (K == 10)
+            {
+                MutationRate = Math.Min(MutationRate + 0.1, 1);
+                K = 0;
+            }
+            if (J == 10)
+            {
+                MutationRate = Math.Max(MutationRate - 0.1, 0);
+                J = 0;
+            }
         }
     }
 }
