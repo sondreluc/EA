@@ -83,12 +83,13 @@ namespace EvolutionaryAlgorithm.Evaluators
             var fitness = 0.0;
             if (minCount != 0)
             {
-                fitness = (1.0 / dst);
+                fitness = (1.0 / (1.0 + dst));
             }
             else if (minCount == maxCount)
             {
                 fitness = 1.0;
             }
+
             return fitness;
         }
 
@@ -112,12 +113,9 @@ namespace EvolutionaryAlgorithm.Evaluators
             var fitness = 0.0;
             if (minCount > 1 )
             {
-                fitness = (1.0 / dst);
+                fitness = (1.0 / (1.0 + dst));
             }
-            else if (minCount == 0 && minCount == maxCount)
-            {
-                fitness = 1.0;
-            }
+
             return fitness;
         }
 

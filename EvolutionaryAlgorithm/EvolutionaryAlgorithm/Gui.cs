@@ -394,7 +394,7 @@ namespace EvolutionaryAlgorithm
                     FitnessChart.Width = 492;
                     SpikeTrainChart.Visible = true;
                     dataGridView1.Columns["Average strategy entropy"].Visible = false;
-                    genotypeSize.Text = "33";
+                    genotypeSize.Text = "35";
                     genotypeSize.ReadOnly = true;
                     break;
             }

@@ -110,7 +110,7 @@ namespace EvolutionaryAlgorithm.EvolutionaryAlgorithms
 
             High = Population.CurrentPopulation.Max(x => x.Fitness);
             BestOfRun = (IzhikevichPhenotype)Population.CurrentPopulation.FirstOrDefault(x => x.Fitness >= High);
-           // updateMutationRate();
+            updateMutationRate();
             Average = Population.CurrentPopulation.Average(x => x.Fitness);
             SD = Math.Sqrt(Population.CurrentPopulation.Sum(x => Math.Pow((x.Fitness - Average), 2)) /
                       Population.CurrentPopulation.Count);
@@ -132,12 +132,12 @@ namespace EvolutionaryAlgorithm.EvolutionaryAlgorithms
 
             if (K == 10)
             {
-                MutationRate = Math.Min(MutationRate + 0.1, 1);
+                MutationRate = Math.Min(MutationRate + 0.3, 1);
                 K = 0;
             }
             if (J == 10)
             {
-                MutationRate = Math.Max(MutationRate - 0.1, 0);
+                MutationRate = Math.Max(MutationRate - 0.3, 0);
                 J = 0;
             }
         }
