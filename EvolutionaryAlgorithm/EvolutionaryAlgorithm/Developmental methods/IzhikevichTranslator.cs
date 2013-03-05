@@ -40,20 +40,31 @@ namespace EvolutionaryAlgorithm.Developmental_methods
         //    return min + (value / maxInt) * (max - min);
         //}
 
-        //Get valid value for specified interval
-        public double binaryToDoubleRange(List<int> list, double min, double max)
+        private double binaryToDoubleRange(List<int> bitVector, double min, double max)
         {
-            double difference = Math.Abs(max - min);
-            double differenceDivided = difference / 127;
+            string bitString = String.Join(String.Empty, bitVector);
+            double maxInt = Math.Pow(2, bitString.Length) - 1;
 
+            int i = Convert.ToInt32(bitString, 2);
 
-
-            string intString = list[0].ToString() + list[1].ToString() + list[2].ToString() + list[3].ToString() + list[4].ToString() + list[5].ToString() + list[6].ToString();
-            int i = Convert.ToInt32(intString, 2);
-
-            return min + (i * differenceDivided);
+            return min + (i / maxInt) * (max - min);
 
         }
+
+        //Get valid value for specified interval
+        //public double binaryToDoubleRange(List<int> list, double min, double max)
+        //{
+        //    double difference = Math.Abs(max - min);
+        //    double differenceDivided = difference / 127;
+
+
+
+        //    string intString = list[0].ToString() + list[1].ToString() + list[2].ToString() + list[3].ToString() + list[4].ToString() + list[5].ToString() + list[6].ToString();
+        //    int i = Convert.ToInt32(intString, 2);
+
+        //    return min + (i * differenceDivided);
+
+        //}
 
     }
 }
