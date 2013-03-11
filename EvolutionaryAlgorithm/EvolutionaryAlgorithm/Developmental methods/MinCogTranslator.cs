@@ -25,7 +25,7 @@ namespace EvolutionaryAlgorithm.Developmental_methods
             OutPutNodes = outputNodes;
         }
 
-        public override AbstractPhenotype translate(BitVector genom)
+        public override AbstractPhenotype Translate(BitVector genom)
         {
             int index = 0;
             

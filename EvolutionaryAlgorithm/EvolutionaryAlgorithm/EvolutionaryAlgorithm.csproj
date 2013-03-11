@@ -50,9 +50,7 @@
     <Compile Include="Developmental methods\IzhikevichTranslator.cs" />
     <Compile Include="Developmental methods\MinCogTranslator.cs" />
     <Compile Include="Developmental methods\OneMaxTranslator.cs" />
-    <Compile Include="drawings.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="drawings.cs" />
     <Compile Include="drawings.Designer.cs">
       <DependentUpon>drawings.cs</DependentUpon>
     </Compile>
@@ -62,6 +60,7 @@
     <Compile Include="Evaluators\OneMaxFitness.cs" />
     <Compile Include="EvolutionaryAlgorithms\AbstractEA.cs" />
     <Compile Include="EvolutionaryAlgorithms\ColonelBlotto.cs" />
+    <Compile Include="EvolutionaryAlgorithms\MinCogAgent.cs" />
     <Compile Include="EvolutionaryAlgorithms\OneMax.cs" />
     <Compile Include="EvolutionaryAlgorithms\SpikingNeuron.cs" />
     <Compile Include="Genotypes\AbstractGenotype.cs" />
@@ -74,7 +73,8 @@
     <Compile Include="Genetic Operators\AbstractGeneticOperators.cs" />
     <Compile Include="Genetic Operators\BinaryOperators.cs" />
     <Compile Include="Genotypes\BitVector.cs" />
-    <Compile Include="Miscellaneous\TupleList.cs" />
+    <Compile Include="Miscellaneous\Node.cs" />
+    <Compile Include="Miscellaneous\PairList.cs" />
     <Compile Include="Phenotypes\AbstractPhenotype.cs" />
     <Compile Include="Phenotypes\ColonelBlottoPhenotype.cs" />
     <Compile Include="Phenotypes\IzhikevichPhenotype.cs" />

@@ -11,13 +11,15 @@ namespace EvolutionaryAlgorithm.Miscellaneous
         public Left left { get; set; }
         public Right right { get; set; }
 
-        public Pair(Left left, Right Right);
+        public Pair(Left left, Right Right)
+        {
+            this.left = left;
+            this.right = right;
+        }
 
     }
     class PairList<Left, Right> : List<Pair<Left, Right>>
     {
-        public PairList(Left left, Right right);
-
         public void Add(Left left, Right right)
         {
             Add(new Pair<Left, Right>(left, right));

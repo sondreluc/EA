@@ -21,6 +21,17 @@ namespace EvolutionaryAlgorithm.EvolutionaryAlgorithms
             createGraph();
         }
 
+        public override void EvolutionLoop()
+        {
+            //TODO
+        }
+
+        public override void Evolve()
+        {
+            //TODO
+        }
+
+
         private void createGraph()
         {
             // Input Nodes (Sensor)
