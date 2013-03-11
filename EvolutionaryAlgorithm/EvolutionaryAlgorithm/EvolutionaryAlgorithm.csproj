@@ -48,6 +48,7 @@
     <Compile Include="Developmental methods\AbstractTranslator.cs" />
     <Compile Include="Developmental methods\ColonelBlottoTranslator.cs" />
     <Compile Include="Developmental methods\IzhikevichTranslator.cs" />
+    <Compile Include="Developmental methods\MinCogTranslator.cs" />
     <Compile Include="Developmental methods\OneMaxTranslator.cs" />
     <Compile Include="drawings.cs">
       <SubType>Form</SubType>
@@ -73,9 +74,11 @@
     <Compile Include="Genetic Operators\AbstractGeneticOperators.cs" />
     <Compile Include="Genetic Operators\BinaryOperators.cs" />
     <Compile Include="Genotypes\BitVector.cs" />
+    <Compile Include="Miscellaneous\TupleList.cs" />
     <Compile Include="Phenotypes\AbstractPhenotype.cs" />
     <Compile Include="Phenotypes\ColonelBlottoPhenotype.cs" />
     <Compile Include="Phenotypes\IzhikevichPhenotype.cs" />
+    <Compile Include="Phenotypes\MinCogPhenotype.cs" />
     <Compile Include="Phenotypes\OneMaxPhenotype.cs" />
     <Compile Include="Populations\BinaryPopulation.cs" />
     <Compile Include="Program.cs" />

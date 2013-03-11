@@ -21,50 +21,5 @@ namespace EvolutionaryAlgorithm.Developmental_methods
 
             return new IzhikevichPhenotype(a, b, c, d, k){Genotype = genom, Fitness = 0.0, RouletteProportion = 0.0};
         }
-
-
-        //private double binaryToDoubleRange(List<int> bitVector, double min, double max)
-        //{
-        //    //Ref: p.17 Bio-Inspired AI
-        //    //Convert to integer
-        //    int pos = bitVector.Count;
-        //    double maxInt = Math.Pow(2, pos) - 1;
-        //    double value = 0;
-
-        //    foreach (int b in bitVector)
-        //    {
-        //        pos--;
-        //        value += Math.Pow(b * 2, pos);
-        //    }
-        //    // double equivalent in range [min, max]
-        //    return min + (value / maxInt) * (max - min);
-        //}
-
-        private double binaryToDoubleRange(List<int> bitVector, double min, double max)
-        {
-            string bitString = String.Join(String.Empty, bitVector);
-            double maxInt = Math.Pow(2, bitString.Length) - 1;
-
-            int i = Convert.ToInt32(bitString, 2);
-
-            return min + (i / maxInt) * (max - min);
-
-        }
-
-        //Get valid value for specified interval
-        //public double binaryToDoubleRange(List<int> list, double min, double max)
-        //{
-        //    double difference = Math.Abs(max - min);
-        //    double differenceDivided = difference / 127;
-
-
-
-        //    string intString = list[0].ToString() + list[1].ToString() + list[2].ToString() + list[3].ToString() + list[4].ToString() + list[5].ToString() + list[6].ToString();
-        //    int i = Convert.ToInt32(intString, 2);
-
-        //    return min + (i * differenceDivided);
-
-        //}
-
     }
 }
