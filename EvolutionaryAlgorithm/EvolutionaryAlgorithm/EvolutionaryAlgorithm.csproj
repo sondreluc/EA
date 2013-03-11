@@ -49,6 +49,12 @@
     <Compile Include="Developmental methods\ColonelBlottoTranslator.cs" />
     <Compile Include="Developmental methods\IzhikevichTranslator.cs" />
     <Compile Include="Developmental methods\OneMaxTranslator.cs" />
+    <Compile Include="drawings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="drawings.Designer.cs">
+      <DependentUpon>drawings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Evaluators\AbstractFitnessEvaluator.cs" />
     <Compile Include="Evaluators\ColonelBlottoFitness.cs" />
     <Compile Include="Evaluators\IzhikevichFitness.cs" />
@@ -79,6 +85,9 @@
     <Compile Include="Selection Mechanisms\Rank.cs" />
     <Compile Include="Selection Mechanisms\SigmaScaling.cs" />
     <Compile Include="Selection Mechanisms\Tournament.cs" />
+    <EmbeddedResource Include="drawings.resx">
+      <DependentUpon>drawings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Gui.resx">
       <DependentUpon>Gui.cs</DependentUpon>
     </EmbeddedResource>

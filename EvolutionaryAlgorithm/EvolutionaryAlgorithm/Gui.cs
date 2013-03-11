@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using EvolutionaryAlgorithm.EvolutionaryAlgorithms;
@@ -43,11 +44,11 @@ namespace EvolutionaryAlgorithm
             {
                 errorProvider1.SetError(problemBox, "Select a problem");
             }
-            else if(string.IsNullOrEmpty(populationSize.Text))
+            else if (string.IsNullOrEmpty(populationSize.Text))
             {
                 errorProvider1.SetError(populationSize, "Fill inn a integer");
             }
-            else if(string.IsNullOrEmpty(genotypeSize.Text))
+            else if (string.IsNullOrEmpty(genotypeSize.Text))
             {
                 errorProvider1.SetError(genotypeSize, "Fill inn a integer");
             }
@@ -108,7 +109,7 @@ namespace EvolutionaryAlgorithm
                     xOverRate = Convert.ToDouble(crossoverRate.Text.Replace('.', ','));
                     replacfract = Convert.ToDouble(problemTextBox1.Text.Replace('.', ','));
                     lossfract = Convert.ToDouble(problemTextBox2.Text.Replace('.', ','));
-                    
+
                 }
                 catch (Exception)
                 {
@@ -143,20 +144,22 @@ namespace EvolutionaryAlgorithm
                         for (int j = 0; j < genoSize; j++)
                         {
                             oneMaxGoalVector.Add(1);
-                        } 
+                        }
                     }
-                    
+
                     oneMax = new OneMax(popSize, genes, oneMaxGoalVector, mutRate, xOverRate, prot, mech);
                 }
 
                 else if (problemBox.Text == "Colonel Blotto")
                 {
-                    colonelBlotto = new ColonelBlotto(popSize, genes, genoSize, mutRate, xOverRate, prot, mech, replacfract, lossfract);
+                    colonelBlotto = new ColonelBlotto(popSize, genes, genoSize, mutRate, xOverRate, prot, mech,
+                                                      replacfract, lossfract);
                 }
-                 
-                else 
+
+                else
                 {
-                    sn = new SpikingNeuron(popSize, genes,Convert.ToInt16(problemComboBox2.Text), mutRate, xOverRate, prot, mech, problemComboBox1.Text);
+                    sn = new SpikingNeuron(popSize, genes, Convert.ToInt16(problemComboBox2.Text), mutRate, xOverRate,
+                                           prot, mech, problemComboBox1.Text);
                 }
 
 
@@ -166,15 +169,16 @@ namespace EvolutionaryAlgorithm
                 FitnessChart.Series["AvgEntropy"].Points.Clear();
                 outputTextBox.Clear();
 
-                outputTextBox.Text += "# Running "+problemBox.Text+" Evolutionary Algorithm." + Environment.NewLine;
+                outputTextBox.Text += "# Running " + problemBox.Text + " Evolutionary Algorithm." + Environment.NewLine;
                 outputTextBox.Text += "# Maximum number of generations: " + genes + Environment.NewLine;
                 outputTextBox.Text += "# Population size: " + popSize + Environment.NewLine;
                 outputTextBox.Text += "# Mutation rate: " + mutRate + Environment.NewLine;
                 outputTextBox.Text += "# Crossover rate: " + xOverRate + Environment.NewLine;
                 outputTextBox.Text += "# Selection protocol: " + prot + Environment.NewLine;
                 outputTextBox.Text += "# Selection mechanism: " + mech + Environment.NewLine;
-                
-                if (problemBox.Text == "OneMax"){
+
+                if (problemBox.Text == "OneMax")
+                {
                     outputTextBox.Text += "# " + Environment.NewLine;
                     outputTextBox.Text += "# The goal vector is: [";
 
@@ -182,7 +186,7 @@ namespace EvolutionaryAlgorithm
                     {
                         outputTextBox.Text += i + " ";
                     }
-                    outputTextBox.Text += "]"+Environment.NewLine;
+                    outputTextBox.Text += "]" + Environment.NewLine;
                 }
                 else if (problemBox.Text == "Colonel Blotto")
                 {
@@ -192,7 +196,7 @@ namespace EvolutionaryAlgorithm
                 else if (problemBox.Text == "Izhikevich Spiking Neuron" && sn != null)
                 {
                     SpikeTrainChart.Series["Goal Train"].Points.Clear();
-                    for (var i=0; i < sn.GoalSpike.Count-1; i++)
+                    for (var i = 0; i < sn.GoalSpike.Count - 1; i++)
                     {
                         SpikeTrainChart.Series["Goal Train"].Points.AddXY(i, sn.GoalSpike.ElementAt(i));
                     }
@@ -206,7 +210,7 @@ namespace EvolutionaryAlgorithm
                     {
                         oneMax.Evolve();
                         FitnessChart.Series["Highest fitness"].Points.AddXY
-                        (i, oneMax.High);
+                            (i, oneMax.High);
                         FitnessChart.Series["Average fitness"].Points.AddXY
                             (i, oneMax.Average);
                         FitnessChart.Series["Standard deviation"].Points.AddXY
@@ -222,39 +226,45 @@ namespace EvolutionaryAlgorithm
                         //outputTextBox.Text += "# Standard deviation: " + oneMax.SD + Environment.NewLine;
                         if ((oneMax.Population.CurrentPopulation.Max(x => x.Fitness)) >= 1.0)
                         {
-                            outputTextBox.Text += "# Problem solved in " + (i + 1) + " generations! " + Environment.NewLine;
+                            outputTextBox.Text += "# Problem solved in " + (i + 1) + " generations! " +
+                                                  Environment.NewLine;
                             break;
                         }
                         if (!((oneMax.Population.CurrentPopulation.Max(x => x.Fitness)) >= 1.0) && i == genes - 1)
                         {
-                            outputTextBox.Text += "# Problem was not solved in " + (i + 1) + " generations. " + Environment.NewLine;
+                            outputTextBox.Text += "# Problem was not solved in " + (i + 1) + " generations. " +
+                                                  Environment.NewLine;
                             outputTextBox.Text += "# Highest fitness reached: " + oneMax.High + Environment.NewLine;
-                            outputTextBox.Text += "# Average fitness last generation : " + oneMax.Average + Environment.NewLine;
-                            outputTextBox.Text += "# Standard deviation last generation: " + oneMax.SD + Environment.NewLine;
+                            outputTextBox.Text += "# Average fitness last generation : " + oneMax.Average +
+                                                  Environment.NewLine;
+                            outputTextBox.Text += "# Standard deviation last generation: " + oneMax.SD +
+                                                  Environment.NewLine;
                             break;
                         }
                     }
-                    else if(problemBox.Text == "Colonel Blotto" && colonelBlotto != null)
+                    else if (problemBox.Text == "Colonel Blotto" && colonelBlotto != null)
                     {
                         colonelBlotto.Evolve();
                         outputTextBox.Text += "# Generation " + i + Environment.NewLine;
                         outputTextBox.Text += "# The winning strategy is: ";
                         outputTextBox.Text += colonelBlotto.Winner.ArmyToString() + Environment.NewLine;
-                        outputTextBox.Text += "# Entropy of winner: "+colonelBlotto.Winner.Entropy + Environment.NewLine;
+                        outputTextBox.Text += "# Entropy of winner: " + colonelBlotto.Winner.Entropy +
+                                              Environment.NewLine;
 
                         FitnessChart.Series["Highest fitness"].Points.AddXY
-                        (i, colonelBlotto.High);
+                            (i, colonelBlotto.High);
                         FitnessChart.Series["Average fitness"].Points.AddXY
                             (i, colonelBlotto.Average);
                         FitnessChart.Series["Standard deviation"].Points.AddXY
                             (i, colonelBlotto.SD);
                         FitnessChart.Series["AvgEntropy"].Points.AddXY
                             (i, colonelBlotto.AverageEntropy);
-                        dataGridView1.Rows.Add(i + 1, colonelBlotto.High, colonelBlotto.Average, colonelBlotto.SD, colonelBlotto.AverageEntropy);
+                        dataGridView1.Rows.Add(i + 1, colonelBlotto.High, colonelBlotto.Average, colonelBlotto.SD,
+                                               colonelBlotto.AverageEntropy);
                         dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.RowCount - 1;
                         dataGridView1.Refresh();
-                        
-                        
+
+
                         //outputTextBox.Text += "# Highest fitness: " + colonelBlotto.High + Environment.NewLine;
                         //outputTextBox.Text += "# Average fitness: " + colonelBlotto.Average + Environment.NewLine;
                         //outputTextBox.Text += "# Standard deviation: " + colonelBlotto.SD + Environment.NewLine;
@@ -265,11 +275,11 @@ namespace EvolutionaryAlgorithm
                     }
                     else if (problemBox.Text == "Izhikevich Spiking Neuron" && sn != null)
                     {
-                        
+
                         sn.Evolve();
-                        
+
                         FitnessChart.Series["Highest fitness"].Points.AddXY
-                                (i, sn.High);
+                            (i, sn.High);
                         FitnessChart.Series["Average fitness"].Points.AddXY
                             (i, sn.Average);
                         FitnessChart.Series["Standard deviation"].Points.AddXY
@@ -305,16 +315,34 @@ namespace EvolutionaryAlgorithm
                                                                                                sn.BestOfRun.Train
                                                                                                  .ElementAt(j));
                             }
-                            SpikeTrainChart.Legends.FindByName("Legend1").CustomItems.FirstOrDefault(x => x.Name == "Fitness").Cells.Last().Text = sn.BestOfRun.Fitness.ToString();
-                            SpikeTrainChart.Legends.FindByName("Legend1").CustomItems.FirstOrDefault(x => x.Name == "a").Cells.Last().Text = sn.BestOfRun.a.ToString();
-                            SpikeTrainChart.Legends.FindByName("Legend1").CustomItems.FirstOrDefault(x => x.Name == "b").Cells.Last().Text = sn.BestOfRun.b.ToString();
-                            SpikeTrainChart.Legends.FindByName("Legend1").CustomItems.FirstOrDefault(x => x.Name == "c").Cells.Last().Text = sn.BestOfRun.c.ToString();
-                            SpikeTrainChart.Legends.FindByName("Legend1").CustomItems.FirstOrDefault(x => x.Name == "d").Cells.Last().Text = sn.BestOfRun.d.ToString();
-                            SpikeTrainChart.Legends.FindByName("Legend1").CustomItems.FirstOrDefault(x => x.Name == "k").Cells.Last().Text = sn.BestOfRun.k.ToString();
+                            SpikeTrainChart.Legends.FindByName("Legend1")
+                                           .CustomItems.FirstOrDefault(x => x.Name == "Fitness")
+                                           .Cells.Last()
+                                           .Text = sn.BestOfRun.Fitness.ToString();
+                            SpikeTrainChart.Legends.FindByName("Legend1")
+                                           .CustomItems.FirstOrDefault(x => x.Name == "a")
+                                           .Cells.Last()
+                                           .Text = sn.BestOfRun.a.ToString();
+                            SpikeTrainChart.Legends.FindByName("Legend1")
+                                           .CustomItems.FirstOrDefault(x => x.Name == "b")
+                                           .Cells.Last()
+                                           .Text = sn.BestOfRun.b.ToString();
+                            SpikeTrainChart.Legends.FindByName("Legend1")
+                                           .CustomItems.FirstOrDefault(x => x.Name == "c")
+                                           .Cells.Last()
+                                           .Text = sn.BestOfRun.c.ToString();
+                            SpikeTrainChart.Legends.FindByName("Legend1")
+                                           .CustomItems.FirstOrDefault(x => x.Name == "d")
+                                           .Cells.Last()
+                                           .Text = sn.BestOfRun.d.ToString();
+                            SpikeTrainChart.Legends.FindByName("Legend1")
+                                           .CustomItems.FirstOrDefault(x => x.Name == "k")
+                                           .Cells.Last()
+                                           .Text = sn.BestOfRun.k.ToString();
                         }
 
                         Update();
-  
+
                     }
                     outputTextBox.Select(outputTextBox.Text.Length - 1, 0);
                     outputTextBox.ScrollToCaret();
@@ -404,5 +432,14 @@ namespace EvolutionaryAlgorithm
         {
 
         }
+
+        private void test(PaintEventArgs e)
+        {
+            Graphics g = CreateGraphics();
+            Pen p = new Pen(Color.Red, 2);
+
+            g.DrawRectangle(p, 5, 40, 100, 40);
+        }
+
     }
 }
