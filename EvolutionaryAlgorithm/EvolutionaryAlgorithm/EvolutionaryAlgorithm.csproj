@@ -50,17 +50,22 @@
     <Compile Include="Developmental methods\IzhikevichTranslator.cs" />
     <Compile Include="Developmental methods\MinCogTranslator.cs" />
     <Compile Include="Developmental methods\OneMaxTranslator.cs" />
-    <Compile Include="drawings.cs" />
+    <Compile Include="drawings.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="drawings.Designer.cs">
       <DependentUpon>drawings.cs</DependentUpon>
     </Compile>
     <Compile Include="Evaluators\AbstractFitnessEvaluator.cs" />
     <Compile Include="Evaluators\ColonelBlottoFitness.cs" />
     <Compile Include="Evaluators\IzhikevichFitness.cs" />
+    <Compile Include="Evaluators\MinCogFitness.cs" />
+    <Compile Include="Evaluators\MinCogSimulator\MinCogAgent.cs" />
+    <Compile Include="Evaluators\MinCogSimulator\MinCogSimulator.cs" />
     <Compile Include="Evaluators\OneMaxFitness.cs" />
     <Compile Include="EvolutionaryAlgorithms\AbstractEA.cs" />
     <Compile Include="EvolutionaryAlgorithms\ColonelBlotto.cs" />
-    <Compile Include="EvolutionaryAlgorithms\MinCogAgent.cs" />
+    <Compile Include="EvolutionaryAlgorithms\MinCog.cs" />
     <Compile Include="EvolutionaryAlgorithms\OneMax.cs" />
     <Compile Include="EvolutionaryAlgorithms\SpikingNeuron.cs" />
     <Compile Include="Genotypes\AbstractGenotype.cs" />

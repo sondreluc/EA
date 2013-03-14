@@ -82,10 +82,13 @@ namespace EvolutionaryAlgorithm.EvolutionaryAlgorithms
 
             // Bias Node
             BiasNode = new Node();
-
+            BiasNode.ActivationLevel = 1.0;
+            
             // Hidden Nodes
             Node hidden1 = new Node();
+            hidden1.ActivationLevel = 0;
             Node hidden2 = new Node();
+            hidden2.ActivationLevel = 0;
 
             hidden1.addConnections(in1, in2, in3, in4, in5, hidden1, hidden2, BiasNode);
             hidden2.addConnections(in1, in2, in3, in4, in5, hidden1, hidden2, BiasNode);

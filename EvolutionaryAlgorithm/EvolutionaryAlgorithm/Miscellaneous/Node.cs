@@ -12,6 +12,7 @@ namespace EvolutionaryAlgorithm.Miscellaneous
         public double Gain { get; set; }
         public double TimeConstant { get; set; }
         public double ActivationLevel { get; set; }
+        public double Output { get; set; }
 
         public void addConnections(params Node[] connections)
         {
