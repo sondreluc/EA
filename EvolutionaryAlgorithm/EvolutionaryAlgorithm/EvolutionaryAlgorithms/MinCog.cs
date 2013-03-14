@@ -7,7 +7,7 @@ using EvolutionaryAlgorithm.Miscellaneous;
 
 namespace EvolutionaryAlgorithm.EvolutionaryAlgorithms
 {
-    class MinCogAgent:AbstractEA
+    class MinCog:AbstractEA
     {
         //public List<Node> graph { get; set; }
         public List<Node> InputNodes { get; set; }
@@ -15,7 +15,7 @@ namespace EvolutionaryAlgorithm.EvolutionaryAlgorithms
         public List<Node> HiddenNodes { get; set; }
         public List<Node> OutPutNodes { get; set; }
 
-        public MinCogAgent(int populationSize, int generations, double mutationRate, 
+        public MinCog(int populationSize, int generations, double mutationRate, 
             double crossoverRate, string selectionProtocol, string selectionMechanism)
         {
             createGraph();
