@@ -30,21 +30,18 @@
         {
             this.SuspendLayout();
             // 
-            // Simulator
+            // Simulator1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(299, 156);
-            this.Name = "Simulator";
-            this.Text = "MinCog Simulator";
-            this.Load += new System.EventHandler(this.Drawings_Load);
+            this.Name = "Simulator1";
+            this.Text = "Min Cog Simulator";
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Run);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
     }
 }

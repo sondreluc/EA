@@ -50,6 +50,12 @@
     <Compile Include="Developmental methods\IzhikevichTranslator.cs" />
     <Compile Include="Developmental methods\MinCogTranslator.cs" />
     <Compile Include="Developmental methods\OneMaxTranslator.cs" />
+    <Compile Include="Simulator1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Simulator1.Designer.cs">
+      <DependentUpon>Simulator1.cs</DependentUpon>
+    </Compile>
     <Compile Include="SimulatorGui.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +101,9 @@
     <Compile Include="Selection Mechanisms\Rank.cs" />
     <Compile Include="Selection Mechanisms\SigmaScaling.cs" />
     <Compile Include="Selection Mechanisms\Tournament.cs" />
+    <EmbeddedResource Include="Simulator1.resx">
+      <DependentUpon>Simulator1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SimulatorGui.resx">
       <DependentUpon>SimulatorGui.cs</DependentUpon>
     </EmbeddedResource>
