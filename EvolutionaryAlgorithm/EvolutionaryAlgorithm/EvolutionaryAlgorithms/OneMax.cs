@@ -4,16 +4,15 @@ using System.Linq;
 using EvolutionaryAlgorithm.Developmental_methods;
 using EvolutionaryAlgorithm.Evaluators;
 using EvolutionaryAlgorithm.Genetic_Operators;
-using EvolutionaryAlgorithm.Genotypes;
-using EvolutionaryAlgorithm.Phenotypes;
 using EvolutionaryAlgorithm.Populations;
 using EvolutionaryAlgorithm.Selection_Mechanisms;
 
 namespace EvolutionaryAlgorithm.EvolutionaryAlgorithms
 {
-    public class OneMax:AbstractEA
+    public class OneMax : AbstractEA
     {
         public bool win = false;
+
         public OneMax(int populationSize, int generations, List<int> goalVector,
                       double mutationRate, double crossoverRate, string selectionProtocol, string selectionMechanism)
         {
@@ -43,7 +42,8 @@ namespace EvolutionaryAlgorithm.EvolutionaryAlgorithms
                     SelectionMechanism = selectionMechanism;
                     break;
             }
-            Population = new BinaryPopulation(PopulationSize, goalVector.Count, selectionProtocol, FitnessEvaluator, new OneMaxTranslator(), 0, 2);
+            Population = new BinaryPopulation(PopulationSize, goalVector.Count, selectionProtocol, FitnessEvaluator,
+                                              new OneMaxTranslator(), 0, 2);
             FitnessEvaluator.CalculatePopulationFitness(Population.CurrentPopulation);
         }
 
@@ -61,7 +61,7 @@ namespace EvolutionaryAlgorithm.EvolutionaryAlgorithms
             //{
             //    System.Diagnostics.Debug.Write(i+" ");
             //} 
-            
+
             //System.Diagnostics.Debug.WriteLine("]");
 
             for (int i = 0; i < Generations; i++)
@@ -79,8 +79,8 @@ namespace EvolutionaryAlgorithm.EvolutionaryAlgorithms
                     break;
                 }
             }
-
         }
+
         public override void Evolve()
         {
             Population.SelectAdults();
@@ -96,8 +96,8 @@ namespace EvolutionaryAlgorithm.EvolutionaryAlgorithms
             High = Population.CurrentPopulation.Max(x => x.Fitness);
             Average = Population.CurrentPopulation.Average(x => x.Fitness);
             SD =
-                Math.Sqrt(Population.CurrentPopulation.Sum(x => Math.Pow((x.Fitness - Average), 2)) /
+                Math.Sqrt(Population.CurrentPopulation.Sum(x => Math.Pow((x.Fitness - Average), 2))/
                           Population.CurrentPopulation.Count);
-        }        
+        }
     }
 }

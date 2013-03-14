@@ -1,30 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using EvolutionaryAlgorithm.EvolutionaryAlgorithms;
 using EvolutionaryAlgorithm.Phenotypes;
 
 namespace EvolutionaryAlgorithm.Evaluators.MinCogSimulator
 {
     public class MinCogSimulator
     {
-        public int[,] Board = new int[15,30];
-        public int GoodHits { get; set; }
-        public int BadHits { get; set; }
-        public MinCogAgent Agent { get; set; }
-        public int CurrentBlockSize { get; set; }
-        public int CurrentBlockXPos { get; set; }
-        public int CurrentBlockYPos { get; set; }
         private readonly Random _random;
+        public int[,] Board = new int[15,30];
 
         public MinCogSimulator(MinCogPhenotype phenotype)
         {
-
             GoodHits = 0;
             BadHits = 0;
-            Agent = new MinCogAgent{Pheno = phenotype, CurrentPosition = 6};
+            Agent = new MinCogAgent(phenotype);
             CurrentBlockSize = 0;
             for (int i = 0; i < Board.GetLength(0); i++)
             {
@@ -35,6 +23,13 @@ namespace EvolutionaryAlgorithm.Evaluators.MinCogSimulator
             }
             _random = new Random();
         }
+
+        public int GoodHits { get; set; }
+        public int BadHits { get; set; }
+        public MinCogAgent Agent { get; set; }
+        public int CurrentBlockSize { get; set; }
+        public int CurrentBlockXPos { get; set; }
+        public int CurrentBlockYPos { get; set; }
 
         public void CheckForHit()
         {
@@ -55,7 +50,7 @@ namespace EvolutionaryAlgorithm.Evaluators.MinCogSimulator
                 }
             }
         }
-        
+
         public void Simulate()
         {
             int count = 0;
@@ -68,7 +63,7 @@ namespace EvolutionaryAlgorithm.Evaluators.MinCogSimulator
 
                 for (int i = CurrentBlockXPos; i < CurrentBlockXPos; i++)
                 {
-                    Board[Board.GetLength(0)-1, i] = 0;
+                    Board[Board.GetLength(0) - 1, i] = 0;
                 }
                 count++;
             }
@@ -85,7 +80,7 @@ namespace EvolutionaryAlgorithm.Evaluators.MinCogSimulator
         public void TimeStep(int brickPos, int brickSize, int lvl)
         {
             var sensorReadings = new bool[5];
-            var sensorNr = 0;
+            int sensorNr = 0;
             for (int j = Agent.CurrentPosition; j < Agent.CurrentPosition + 5; j++)
             {
                 if (j >= CurrentBlockXPos && j <= CurrentBlockXPos + CurrentBlockSize)
@@ -109,7 +104,7 @@ namespace EvolutionaryAlgorithm.Evaluators.MinCogSimulator
                     Board[Board.GetLength(0) - 1, j - Board.GetLength(1)] = 0;
                 }
             }
-            Agent.UpdatePos();
+
             for (int j = Agent.CurrentPosition; j < Agent.CurrentPosition + 5; j++)
             {
                 if (j < Board.GetLength(1))
@@ -123,13 +118,13 @@ namespace EvolutionaryAlgorithm.Evaluators.MinCogSimulator
             }
             if (lvl == 0)
             {
-                for (int j = brickPos; j < brickPos+brickSize; j++)
+                for (int j = brickPos; j < brickPos + brickSize; j++)
                 {
                     Board[lvl, j] = 2;
                 }
                 CurrentBlockYPos++;
             }
-            else if (lvl == Board.GetLength(0)-1)
+            else if (lvl == Board.GetLength(0) - 1)
             {
                 for (int j = brickPos; j < brickPos + brickSize; j++)
                 {
@@ -153,6 +148,5 @@ namespace EvolutionaryAlgorithm.Evaluators.MinCogSimulator
                 CurrentBlockYPos++;
             }
         }
-
     }
 }

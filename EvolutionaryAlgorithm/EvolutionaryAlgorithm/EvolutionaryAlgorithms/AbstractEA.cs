@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using EvolutionaryAlgorithm.Evaluators;
 using EvolutionaryAlgorithm.Genetic_Operators;
 using EvolutionaryAlgorithm.Genotypes;
@@ -26,6 +24,7 @@ namespace EvolutionaryAlgorithm.EvolutionaryAlgorithms
         public double CrossoverRate { get; set; }
         public abstract void EvolutionLoop();
         public abstract void Evolve();
+
         public void GenerateOffspring()
         {
             int size;
@@ -35,12 +34,14 @@ namespace EvolutionaryAlgorithm.EvolutionaryAlgorithms
             }
             else
             {
-                size = PopulationSize / 2;
+                size = PopulationSize/2;
             }
             for (int i = 0; i < size; i++)
             {
-
-                List<AbstractPhenotype> parents = SelectionMechanism == "Tournament" ? ParentSelector.TournamentSelection(Population.CurrentPopulation, 2, 2, 0.25) : ParentSelector.SelectParents(Population.CurrentPopulation, 2);
+                List<AbstractPhenotype> parents = SelectionMechanism == "Tournament"
+                                                      ? ParentSelector.TournamentSelection(
+                                                          Population.CurrentPopulation, 2, 2, 0.25)
+                                                      : ParentSelector.SelectParents(Population.CurrentPopulation, 2);
                 List<BitVector> offsprings = GeneticOperators.Crossover(parents[0], parents[1], CrossoverRate);
 
                 GeneticOperators.Mutate(MutationRate, offsprings[0]);
@@ -49,6 +50,5 @@ namespace EvolutionaryAlgorithm.EvolutionaryAlgorithms
                 Population.Offsprings.AddRange(offsprings);
             }
         }
-       
     }
 }

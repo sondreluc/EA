@@ -1,23 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace EvolutionaryAlgorithm.Miscellaneous
 {
     public class Pair<Left, Right>
     {
-        public Left left { get; set; }
-        public Right right { get; set; }
-
         public Pair(Left left, Right Right)
         {
             this.left = left;
-            this.right = right;
+            right = right;
         }
 
+        public Left left { get; set; }
+        public Right right { get; set; }
     }
+
     public class PairList<Left, Right> : List<Pair<Left, Right>>
     {
         public void Add(Left left, Right right)

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Threading;
 using System.Windows.Forms;
 using EvolutionaryAlgorithm.Evaluators.MinCogSimulator;
@@ -9,15 +8,14 @@ namespace EvolutionaryAlgorithm
 {
     public partial class Simulator : Form
     {
-
-        public Pen p = new Pen(Color.Black);
-        public Brush RedBrush = new SolidBrush(Color.Red);
+        private readonly Random _random;
         public Brush BlueBrush = new SolidBrush(Color.Blue);
         public Rectangle Bot;
         public Rectangle Drop;
-        private Random _random;
+        public Brush RedBrush = new SolidBrush(Color.Red);
+        public Pen p = new Pen(Color.Black);
         public MinCogSimulator sim;
-        
+
         public Simulator()
         {
             InitializeComponent();
@@ -51,7 +49,7 @@ namespace EvolutionaryAlgorithm
             }
         }
 
-        public void DrawArray(Graphics g, int [,] array)
+        public void DrawArray(Graphics g, int[,] array)
         {
             g.Clear(Color.White);
             for (int i = 0; i < array.GetLength(0); i++)
@@ -69,12 +67,10 @@ namespace EvolutionaryAlgorithm
                     }
                 }
             }
-
         }
 
-        private void Drawings_Load(object sender, System.EventArgs e)
+        private void Drawings_Load(object sender, EventArgs e)
         {
-
         }
     }
 }

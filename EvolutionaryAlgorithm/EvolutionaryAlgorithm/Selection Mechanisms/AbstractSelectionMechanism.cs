@@ -16,10 +16,9 @@ namespace EvolutionaryAlgorithm.Selection_Mechanisms
 
         public List<AbstractPhenotype> SelectParents(List<AbstractPhenotype> adults, int numberToSelect)
         {
-            
-            List<AbstractPhenotype> selectedParents = new List<AbstractPhenotype>();
+            var selectedParents = new List<AbstractPhenotype>();
 
-            for (int i = 0; i < numberToSelect; i++ )
+            for (int i = 0; i < numberToSelect; i++)
             {
                 double randomPropotion = _random.NextDouble();
                 selectedParents.Add(adults.FirstOrDefault(x => x.RouletteProportion > randomPropotion));
@@ -27,7 +26,10 @@ namespace EvolutionaryAlgorithm.Selection_Mechanisms
 
             return selectedParents;
         }
+
         public abstract void NormalizeRouletteWheel(List<AbstractPhenotype> adults);
-        public abstract List<AbstractPhenotype> TournamentSelection(List<AbstractPhenotype> adults, int numberToSelect, int k, double e);
+
+        public abstract List<AbstractPhenotype> TournamentSelection(List<AbstractPhenotype> adults, int numberToSelect,
+                                                                    int k, double e);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace EvolutionaryAlgorithm.Phenotypes
 {
-    public class OneMaxPhenotype:AbstractPhenotype
+    public class OneMaxPhenotype : AbstractPhenotype
     {
         public OneMaxPhenotype(BitVector genom)
         {

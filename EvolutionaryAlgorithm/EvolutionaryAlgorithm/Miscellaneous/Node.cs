@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EvolutionaryAlgorithm.Miscellaneous
+﻿namespace EvolutionaryAlgorithm.Miscellaneous
 {
     public class Node
     {
@@ -17,7 +11,7 @@ namespace EvolutionaryAlgorithm.Miscellaneous
         public void addConnections(params Node[] connections)
         {
             for (int i = 0; i < connections.Length; i++)
-                this.UpstreamConnections.Add(connections[i], -1);
+                UpstreamConnections.Add(connections[i], -1);
         }
     }
 }

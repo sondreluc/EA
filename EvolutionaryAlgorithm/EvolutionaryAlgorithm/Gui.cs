@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 using EvolutionaryAlgorithm.EvolutionaryAlgorithms;
-using EvolutionaryAlgorithm.Phenotypes;
 
 namespace EvolutionaryAlgorithm
 {
     public partial class Gui : Form
     {
-
         private static readonly Random Random = new Random();
 
         public Gui()
@@ -108,27 +107,25 @@ namespace EvolutionaryAlgorithm
                     xOverRate = Convert.ToDouble(crossoverRate.Text.Replace('.', ','));
                     replacfract = Convert.ToDouble(problemTextBox1.Text.Replace('.', ','));
                     lossfract = Convert.ToDouble(problemTextBox2.Text.Replace('.', ','));
-
                 }
                 catch (Exception)
                 {
-
                 }
 
-                var prot = protocolBox.Text;
-                var mech = mechanismBox.Text;
+                string prot = protocolBox.Text;
+                string mech = mechanismBox.Text;
 
 
                 dataGridView1.Rows.Clear();
                 FitnessChart.ResetText();
 
-                var sleepTime = 1000/genes;
+                int sleepTime = 1000/genes;
                 if (sleepTime < 1) sleepTime = 0;
 
                 OneMax oneMax = null;
                 ColonelBlotto colonelBlotto = null;
                 SpikingNeuron sn = null;
-                List<int> oneMaxGoalVector = new List<int>();
+                var oneMaxGoalVector = new List<int>();
                 if (problemBox.Text == "OneMax")
                 {
                     if (problemComboBox1.Text == "Random vector")
@@ -195,16 +192,16 @@ namespace EvolutionaryAlgorithm
                 else if (problemBox.Text == "Izhikevich Spiking Neuron" && sn != null)
                 {
                     SpikeTrainChart.Series["Goal Train"].Points.Clear();
-                    for (var i = 0; i < sn.GoalSpike.Count - 1; i++)
+                    for (int i = 0; i < sn.GoalSpike.Count - 1; i++)
                     {
                         SpikeTrainChart.Series["Goal Train"].Points.AddXY(i, sn.GoalSpike.ElementAt(i));
                     }
                     Update();
                 }
-                var best = 0.0;
+                double best = 0.0;
                 for (int i = 0; i < genes; i++)
                 {
-                    System.Threading.Thread.Sleep(sleepTime);
+                    Thread.Sleep(sleepTime);
                     if (problemBox.Text == "OneMax" && oneMax != null)
                     {
                         oneMax.Evolve();
@@ -270,11 +267,9 @@ namespace EvolutionaryAlgorithm
                         //outputTextBox.Text += "# Average strategy entropy: " + colonelBlotto.AverageEntropy + Environment.NewLine;
 
                         Update();
-
                     }
                     else if (problemBox.Text == "Izhikevich Spiking Neuron" && sn != null)
                     {
-
                         sn.Evolve();
 
                         FitnessChart.Series["Highest fitness"].Points.AddXY
@@ -308,7 +303,7 @@ namespace EvolutionaryAlgorithm
                         {
                             best = sn.BestOfRun.Fitness;
                             SpikeTrainChart.Series["Best of run Spike Train"].Points.Clear();
-                            for (var j = 0; j < sn.BestOfRun.Train.Count - 1; j++)
+                            for (int j = 0; j < sn.BestOfRun.Train.Count - 1; j++)
                             {
                                 SpikeTrainChart.Series["Best of run Spike Train"].Points.AddXY(j,
                                                                                                sn.BestOfRun.Train
@@ -341,7 +336,6 @@ namespace EvolutionaryAlgorithm
                         }
 
                         Update();
-
                     }
                     outputTextBox.Select(outputTextBox.Text.Length - 1, 0);
                     outputTextBox.ScrollToCaret();
@@ -349,9 +343,7 @@ namespace EvolutionaryAlgorithm
                 outputTextBox.Text += "#" + Environment.NewLine + "#" + Environment.NewLine + "#" + Environment.NewLine;
                 outputTextBox.Select(outputTextBox.Text.Length - 1, 0);
                 outputTextBox.ScrollToCaret();
-
             }
-
         }
 
         private void ProblemBoxSelectedIndexChanged(object sender, EventArgs e)
@@ -429,16 +421,14 @@ namespace EvolutionaryAlgorithm
 
         private void chart1_Click(object sender, EventArgs e)
         {
-
         }
 
         private void test(PaintEventArgs e)
         {
             Graphics g = CreateGraphics();
-            Pen p = new Pen(Color.Red, 2);
+            var p = new Pen(Color.Red, 2);
 
             g.DrawRectangle(p, 5, 40, 100, 40);
         }
-
     }
 }

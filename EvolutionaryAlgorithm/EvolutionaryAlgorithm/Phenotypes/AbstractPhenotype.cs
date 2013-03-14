@@ -3,7 +3,7 @@ using EvolutionaryAlgorithm.Genotypes;
 
 namespace EvolutionaryAlgorithm.Phenotypes
 {
-    public abstract class AbstractPhenotype:IComparable<AbstractPhenotype>
+    public abstract class AbstractPhenotype : IComparable<AbstractPhenotype>
     {
         public AbstractGenotype Genotype { get; set; }
         public double Fitness { get; set; }

@@ -4,17 +4,18 @@ using EvolutionaryAlgorithm.Phenotypes;
 
 namespace EvolutionaryAlgorithm.Evaluators
 {
-    public class OneMaxFitness:AbstractFitnessEvaluator
+    public class OneMaxFitness : AbstractFitnessEvaluator
     {
         public List<int> GoalVector;
- 
+
         public OneMaxFitness(List<int> goalVector)
         {
             GoalVector = goalVector;
         }
+
         public override void CalculateFitness(AbstractPhenotype phenotype)
         {
-            BitVector bitVector =(BitVector)phenotype.Genotype;
+            var bitVector = (BitVector) phenotype.Genotype;
             int count = 0;
             for (int i = 0; i < GoalVector.Count; i++)
             {
@@ -23,21 +24,16 @@ namespace EvolutionaryAlgorithm.Evaluators
                     count++;
                 }
             }
-            
-            phenotype.Fitness = ((double)count/bitVector.Vector.Count);
 
-            
-
-            
+            phenotype.Fitness = ((double) count/bitVector.Vector.Count);
         }
 
         public override void CalculatePopulationFitness(List<AbstractPhenotype> phenotypes)
         {
-            foreach (var phenotype in phenotypes)
+            foreach (AbstractPhenotype phenotype in phenotypes)
             {
                 CalculateFitness(phenotype);
             }
         }
-
     }
 }

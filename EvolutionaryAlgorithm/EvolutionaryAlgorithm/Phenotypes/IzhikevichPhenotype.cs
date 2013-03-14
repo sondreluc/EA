@@ -1,21 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EvolutionaryAlgorithm.Phenotypes
 {
-    class IzhikevichPhenotype:AbstractPhenotype
+    internal class IzhikevichPhenotype : AbstractPhenotype
     {
-        public double a { get; private set; }
-        public double b { get; private set; }
-        public double c { get; private set; }
-        public double d { get; private set; }
-        public double k { get; private set; }
-        public List<double> Train { get; set; }
-        public List<int> SpikeTimes { get; set; } 
-
         public IzhikevichPhenotype(double a, double b, double c, double d, double k)
         {
             this.a = a;
@@ -25,6 +14,14 @@ namespace EvolutionaryAlgorithm.Phenotypes
             this.k = k;
             Train = new List<double>();
         }
+
+        public double a { get; private set; }
+        public double b { get; private set; }
+        public double c { get; private set; }
+        public double d { get; private set; }
+        public double k { get; private set; }
+        public List<double> Train { get; set; }
+        public List<int> SpikeTimes { get; set; }
 
         public void MakeTrain()
         {
@@ -52,9 +49,7 @@ namespace EvolutionaryAlgorithm.Phenotypes
                     u = u + uDt;
                 }
                 Train.Add(v);
-                
             }
         }
-
     }
 }

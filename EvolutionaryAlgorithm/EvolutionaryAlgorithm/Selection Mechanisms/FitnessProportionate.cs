@@ -5,15 +5,14 @@ using EvolutionaryAlgorithm.Phenotypes;
 
 namespace EvolutionaryAlgorithm.Selection_Mechanisms
 {
-    public class FitnessProportionate:AbstractSelectionMechanism
+    public class FitnessProportionate : AbstractSelectionMechanism
     {
-
         public override void NormalizeRouletteWheel(List<AbstractPhenotype> adults)
         {
             double fitnessSum = adults.Sum(x => x.Fitness);
             double rouletteProportion = 0;
 
-            foreach (var adult in adults)
+            foreach (AbstractPhenotype adult in adults)
             {
                 double normalizedFitness = (adult.Fitness/fitnessSum);
                 rouletteProportion += normalizedFitness;
@@ -21,7 +20,8 @@ namespace EvolutionaryAlgorithm.Selection_Mechanisms
             }
         }
 
-        public override List<AbstractPhenotype> TournamentSelection(List<AbstractPhenotype> adults, int numberToSelect, int k, double e)
+        public override List<AbstractPhenotype> TournamentSelection(List<AbstractPhenotype> adults, int numberToSelect,
+                                                                    int k, double e)
         {
             throw new NotImplementedException();
         }

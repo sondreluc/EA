@@ -1,30 +1,25 @@
-﻿using EvolutionaryAlgorithm.Developmental_methods;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using EvolutionaryAlgorithm.Developmental_methods;
 using EvolutionaryAlgorithm.Evaluators;
 using EvolutionaryAlgorithm.Genetic_Operators;
 using EvolutionaryAlgorithm.Phenotypes;
 using EvolutionaryAlgorithm.Populations;
 using EvolutionaryAlgorithm.Selection_Mechanisms;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EvolutionaryAlgorithm.EvolutionaryAlgorithms
 {
-    class SpikingNeuron:AbstractEA
+    internal class SpikingNeuron : AbstractEA
     {
         public List<double> GoalSpike;
-        public IzhikevichPhenotype BestOfRun { get; set; }
-        public int K { get; set; }
-        public int J { get; set; }
-        public double PrevFitness { get; set; }
 
         public SpikingNeuron(int populationSize, int generations, int dataSetNumber,
-                      double mutationRate, double crossoverRate, string selectionProtocol, string selectionMechanism, string sdm)
+                             double mutationRate, double crossoverRate, string selectionProtocol,
+                             string selectionMechanism, string sdm)
         {
-            
             GeneticOperators = new BinaryOperators();
             PopulationSize = populationSize;
             Generations = generations;
@@ -34,7 +29,7 @@ namespace EvolutionaryAlgorithm.EvolutionaryAlgorithms
             K = 0;
             J = 0;
             PrevFitness = 0.0;
-            
+
             switch (selectionMechanism.ToLower())
             {
                 case "fitness-prop":
@@ -56,9 +51,15 @@ namespace EvolutionaryAlgorithm.EvolutionaryAlgorithms
             }
             GoalSpike = readDataSet(dataSetNumber);
             FitnessEvaluator = new IzhikevichFitness(sdm, GoalSpike);
-            Population = new BinaryPopulation(PopulationSize, 35, selectionProtocol, FitnessEvaluator, new IzhikevichTranslator(), 0, 2);
+            Population = new BinaryPopulation(PopulationSize, 35, selectionProtocol, FitnessEvaluator,
+                                              new IzhikevichTranslator(), 0, 2);
             FitnessEvaluator.CalculatePopulationFitness(Population.CurrentPopulation);
         }
+
+        public IzhikevichPhenotype BestOfRun { get; set; }
+        public int K { get; set; }
+        public int J { get; set; }
+        public double PrevFitness { get; set; }
 
         private List<double> readDataSet(int number)
         {
@@ -67,11 +68,11 @@ namespace EvolutionaryAlgorithm.EvolutionaryAlgorithms
             string filepath = Environment.CurrentDirectory + filename;
             filepath = filepath.Replace(@"\bin\Debug", "");
 
-            List<double> data = new List<double>();
+            var data = new List<double>();
             foreach (string line in File.ReadLines(filepath))
-                foreach (string value in line.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries))
+                foreach (string value in line.Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries))
                 {
-                    double d = Convert.ToDouble(value.Replace('.',','));
+                    double d = Convert.ToDouble(value.Replace('.', ','));
                     data.Add(d);
                 }
 
@@ -83,15 +84,14 @@ namespace EvolutionaryAlgorithm.EvolutionaryAlgorithms
             for (int i = 0; i < Generations; i++)
             {
                 Evolve();
-                foreach (var value in BestOfRun.Train)
+                foreach (double value in BestOfRun.Train)
                 {
-                    System.Diagnostics.Debug.Write(value+" ");
-                    
+                    Debug.Write(value + " ");
                 }
-                System.Diagnostics.Debug.WriteLine("");
-                System.Diagnostics.Debug.WriteLine("A: " + BestOfRun.a + ", B: "+BestOfRun.b + ", C: "+BestOfRun.c + ", D: "+BestOfRun.d + ", K: "+BestOfRun.k);
-                System.Diagnostics.Debug.WriteLine("");
-                
+                Debug.WriteLine("");
+                Debug.WriteLine("A: " + BestOfRun.a + ", B: " + BestOfRun.b + ", C: " + BestOfRun.c + ", D: " +
+                                BestOfRun.d + ", K: " + BestOfRun.k);
+                Debug.WriteLine("");
             }
         }
 
@@ -109,11 +109,11 @@ namespace EvolutionaryAlgorithm.EvolutionaryAlgorithms
             GenerateOffspring();
 
             High = Population.CurrentPopulation.Max(x => x.Fitness);
-            BestOfRun = (IzhikevichPhenotype)Population.CurrentPopulation.FirstOrDefault(x => x.Fitness >= High);
+            BestOfRun = (IzhikevichPhenotype) Population.CurrentPopulation.FirstOrDefault(x => x.Fitness >= High);
             updateMutationRate();
             Average = Population.CurrentPopulation.Average(x => x.Fitness);
-            SD = Math.Sqrt(Population.CurrentPopulation.Sum(x => Math.Pow((x.Fitness - Average), 2)) /
-                      Population.CurrentPopulation.Count);
+            SD = Math.Sqrt(Population.CurrentPopulation.Sum(x => Math.Pow((x.Fitness - Average), 2))/
+                           Population.CurrentPopulation.Count);
         }
 
         private void updateMutationRate()

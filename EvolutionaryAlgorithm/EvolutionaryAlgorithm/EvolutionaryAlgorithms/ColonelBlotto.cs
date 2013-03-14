@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using EvolutionaryAlgorithm.Developmental_methods;
 using EvolutionaryAlgorithm.Evaluators;
@@ -9,16 +10,17 @@ using EvolutionaryAlgorithm.Selection_Mechanisms;
 
 namespace EvolutionaryAlgorithm.EvolutionaryAlgorithms
 {
-    public class ColonelBlotto:AbstractEA
+    public class ColonelBlotto : AbstractEA
     {
-        public int NumberOfBattles;
-        public double LossFraction;
-        public double RedeploymentFraction;
         public double AverageEntropy;
+        public double LossFraction;
+        public int NumberOfBattles;
+        public double RedeploymentFraction;
         public ColonelBlottoPhenotype Winner;
 
         public ColonelBlotto(int populationSize, int generations, int numberOfBattles,
-                             double mutationRate, double crossoverRate, string selectionProtocol, string selectionMechanism,double redeploymentFraction, double lossFraction)
+                             double mutationRate, double crossoverRate, string selectionProtocol,
+                             string selectionMechanism, double redeploymentFraction, double lossFraction)
         {
             FitnessEvaluator = new ColonelBlottoFitness();
             GeneticOperators = new BinaryOperators();
@@ -50,24 +52,25 @@ namespace EvolutionaryAlgorithm.EvolutionaryAlgorithms
                     SelectionMechanism = selectionMechanism;
                     break;
             }
-            Population = new BinaryPopulation(PopulationSize, NumberOfBattles, selectionProtocol, FitnessEvaluator, new ColonelBlottoTranslator(), 0, 11);
-            
+            Population = new BinaryPopulation(PopulationSize, NumberOfBattles, selectionProtocol, FitnessEvaluator,
+                                              new ColonelBlottoTranslator(), 0, 11);
         }
+
         public override void EvolutionLoop()
         {
-            System.Diagnostics.Debug.WriteLine("Running Colonel Blotto Evolutionary Algorithm.");
-            System.Diagnostics.Debug.WriteLine("Number of generations: " + Generations);
-            System.Diagnostics.Debug.WriteLine("Population size: " + PopulationSize);
-            System.Diagnostics.Debug.WriteLine("Mutation rate: " + MutationRate);
-            System.Diagnostics.Debug.WriteLine("Selection protocol: " + Population.SelectionProtocol);
-            System.Diagnostics.Debug.WriteLine("Selection mechanism: " + SelectionMechanism);
-            System.Diagnostics.Debug.WriteLine("Number of battles: " + NumberOfBattles);
-            System.Diagnostics.Debug.WriteLine("Loss fraction: " + LossFraction);
-            System.Diagnostics.Debug.WriteLine("Redeployment Fraction: " + RedeploymentFraction);
+            Debug.WriteLine("Running Colonel Blotto Evolutionary Algorithm.");
+            Debug.WriteLine("Number of generations: " + Generations);
+            Debug.WriteLine("Population size: " + PopulationSize);
+            Debug.WriteLine("Mutation rate: " + MutationRate);
+            Debug.WriteLine("Selection protocol: " + Population.SelectionProtocol);
+            Debug.WriteLine("Selection mechanism: " + SelectionMechanism);
+            Debug.WriteLine("Number of battles: " + NumberOfBattles);
+            Debug.WriteLine("Loss fraction: " + LossFraction);
+            Debug.WriteLine("Redeployment Fraction: " + RedeploymentFraction);
 
             for (int i = 0; i < Generations; i++)
             {
-                System.Diagnostics.Debug.WriteLine("Generation " + i);
+                Debug.WriteLine("Generation " + i);
                 Evolve();
             }
         }
@@ -76,7 +79,7 @@ namespace EvolutionaryAlgorithm.EvolutionaryAlgorithms
         {
             Population.SelectAdults();
             AverageEntropy = CalculateAverageEntropy();
-            
+
             //System.Diagnostics.Debug.WriteLine("Average Entropy before war: " + AverageEntropy);
             RunWars();
             FitnessEvaluator.CalculatePopulationFitness(Population.CurrentPopulation);
@@ -88,27 +91,29 @@ namespace EvolutionaryAlgorithm.EvolutionaryAlgorithms
 
             High = Population.CurrentPopulation.Max(x => x.Fitness);
             Average = Population.CurrentPopulation.Average(x => x.Fitness);
-            SD = Math.Sqrt(Population.CurrentPopulation.Sum(x => Math.Pow((x.Fitness - Average), 2)) / Population.CurrentPopulation.Count);
+            SD =
+                Math.Sqrt(Population.CurrentPopulation.Sum(x => Math.Pow((x.Fitness - Average), 2))/
+                          Population.CurrentPopulation.Count);
             GetWinner();
 
             //System.Diagnostics.Debug.WriteLine("Highest fitness: " + High);
             //System.Diagnostics.Debug.WriteLine("Average fitness: " + Average);
             //System.Diagnostics.Debug.WriteLine("Standard deviation: " + SD);
             //System.Diagnostics.Debug.WriteLine("The winning strategy is:");
-            System.Diagnostics.Debug.WriteLine(Winner.ArmyToString());
+            Debug.WriteLine(Winner.ArmyToString());
         }
 
         public void War(ColonelBlottoPhenotype army1, ColonelBlottoPhenotype army2)
         {
             for (int i = 0; i < army1.Army.Count; i++)
             {
-                if ((army1.Army[i] * army1.Strength) > (army2.Army[i] * army2.Strength))
+                if ((army1.Army[i]*army1.Strength) > (army2.Army[i]*army2.Strength))
                 {
                     army1.Wins++;
-                    army1.Redeployment(i,(army1.Army[i] - army2.Army[i]), RedeploymentFraction);
+                    army1.Redeployment(i, (army1.Army[i] - army2.Army[i]), RedeploymentFraction);
                     army2.Strength -= LossFraction;
                 }
-                else if ((army2.Army[i] * army2.Strength) > (army1.Army[i] * army1.Strength))
+                else if ((army2.Army[i]*army2.Strength) > (army1.Army[i]*army1.Strength))
                 {
                     army2.Wins++;
                     army2.Redeployment(i, (army2.Army[i] - army1.Army[i]), RedeploymentFraction);
@@ -126,11 +131,12 @@ namespace EvolutionaryAlgorithm.EvolutionaryAlgorithms
 
         public void RunWars()
         {
-            for (int i = 0; i < Population.CurrentPopulation.Count-1; i++)
+            for (int i = 0; i < Population.CurrentPopulation.Count - 1; i++)
             {
-                for (int j = i+1; j < Population.CurrentPopulation.Count; j++)
+                for (int j = i + 1; j < Population.CurrentPopulation.Count; j++)
                 {
-                    War((ColonelBlottoPhenotype) Population.CurrentPopulation[i],(ColonelBlottoPhenotype) Population.CurrentPopulation[j]);
+                    War((ColonelBlottoPhenotype) Population.CurrentPopulation[i],
+                        (ColonelBlottoPhenotype) Population.CurrentPopulation[j]);
                 }
             }
         }
@@ -142,7 +148,7 @@ namespace EvolutionaryAlgorithm.EvolutionaryAlgorithms
 
         public void GetWinner()
         {
-            var max = Population.CurrentPopulation.Cast<ColonelBlottoPhenotype>().Max(x => x.Fitness);
+            double max = Population.CurrentPopulation.Cast<ColonelBlottoPhenotype>().Max(x => x.Fitness);
             Winner = Population.CurrentPopulation.Cast<ColonelBlottoPhenotype>().FirstOrDefault(x => x.Fitness >= max);
         }
     }

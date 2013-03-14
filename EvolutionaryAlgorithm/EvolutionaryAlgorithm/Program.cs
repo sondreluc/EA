@@ -1,17 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
-using EvolutionaryAlgorithm.EvolutionaryAlgorithms;
 
 namespace EvolutionaryAlgorithm
 {
-    static class Program
+    internal static class Program
     {
         /// <summary>
-        /// The main entry point for the application.
+        ///     The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        private static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
@@ -23,7 +21,6 @@ namespace EvolutionaryAlgorithm
             //sn.EvolutionLoop();
             //sn = new SpikingNeuron(20, 50, 1, 0.1, 0.9, "A-I", "tournament", "waveform");
             //sn.EvolutionLoop();
-          
         }
     }
 }

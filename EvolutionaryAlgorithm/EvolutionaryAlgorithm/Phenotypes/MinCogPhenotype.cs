@@ -1,23 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using EvolutionaryAlgorithm.Miscellaneous;
 
 namespace EvolutionaryAlgorithm.Phenotypes
 {
-    public class MinCogPhenotype:AbstractPhenotype
+    public class MinCogPhenotype : AbstractPhenotype
     {
         public List<Node> InputNodes { get; set; }
         public List<Node> HiddenNodes { get; set; }
         public List<Node> OutputNodes { get; set; }
         public Node BiasNode { get; set; }
     }
-
-
-
-
 
 
     //private class Node

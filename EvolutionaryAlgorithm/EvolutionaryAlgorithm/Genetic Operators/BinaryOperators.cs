@@ -5,17 +5,17 @@ using EvolutionaryAlgorithm.Phenotypes;
 
 namespace EvolutionaryAlgorithm.Genetic_Operators
 {
-    public class BinaryOperators:AbstractGeneticOperators
+    public class BinaryOperators : AbstractGeneticOperators
     {
         private readonly Random _random;
-            public BinaryOperators()
-            {
-                _random = new Random();
-            }
+
+        public BinaryOperators()
+        {
+            _random = new Random();
+        }
 
         public override void Mutate(double mutationRate, BitVector genotype)
         {
-            
             double randomDouble = _random.NextDouble();
 
             if (randomDouble <= mutationRate)
@@ -25,19 +25,20 @@ namespace EvolutionaryAlgorithm.Genetic_Operators
             }
         }
 
-        public override List<BitVector> Crossover(AbstractPhenotype parent1, AbstractPhenotype parent2, double crossoverRate)
+        public override List<BitVector> Crossover(AbstractPhenotype parent1, AbstractPhenotype parent2,
+                                                  double crossoverRate)
         {
-            BitVector par1 = (BitVector)parent1.Genotype;
-            BitVector par2 = (BitVector)parent2.Genotype;
+            var par1 = (BitVector) parent1.Genotype;
+            var par2 = (BitVector) parent2.Genotype;
 
             var offspring = new List<BitVector>();
-            
+
             int randomIndex = _random.Next(1, par1.Vector.Count);
             double randomDouble = _random.NextDouble();
-            BitVector child1 = new BitVector();
-            BitVector child2 = new BitVector();
-            
-            if(randomDouble <= crossoverRate)
+            var child1 = new BitVector();
+            var child2 = new BitVector();
+
+            if (randomDouble <= crossoverRate)
             {
                 for (int i = 0; i < par1.Vector.Count; i++)
                 {
