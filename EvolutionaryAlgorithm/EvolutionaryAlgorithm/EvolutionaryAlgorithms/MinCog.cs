@@ -1,16 +1,26 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using System;
 using EvolutionaryAlgorithm.Developmental_methods;
 using EvolutionaryAlgorithm.Evaluators;
 using EvolutionaryAlgorithm.Genetic_Operators;
 using EvolutionaryAlgorithm.Miscellaneous;
 using EvolutionaryAlgorithm.Populations;
 using EvolutionaryAlgorithm.Selection_Mechanisms;
+using EvolutionaryAlgorithm.Phenotypes;
 
 namespace EvolutionaryAlgorithm.EvolutionaryAlgorithms
 {
     internal class MinCog : AbstractEA
     {
         //public List<Node> graph { get; set; }
+
+        public MinCogPhenotype BestOfRun { get; set; }
+        public List<Node> InputNodes { get; set; }
+        public Node BiasNode { get; set; }
+        public List<Node> HiddenNodes { get; set; }
+        public List<Node> OutputNodes { get; set; }
+
         public MinCog(int populationSize, int generations, double mutationRate,
                       double crossoverRate, string selectionProtocol, string selectionMechanism)
         {
@@ -48,19 +58,34 @@ namespace EvolutionaryAlgorithm.EvolutionaryAlgorithms
             FitnessEvaluator.CalculatePopulationFitness(Population.CurrentPopulation);
         }
 
-        public List<Node> InputNodes { get; set; }
-        public Node BiasNode { get; set; }
-        public List<Node> HiddenNodes { get; set; }
-        public List<Node> OutputNodes { get; set; }
+
 
         public override void EvolutionLoop()
         {
-            //TODO
+            for (int i = 0; i < Generations; i++)
+            {
+                Evolve();
+            }
         }
 
         public override void Evolve()
         {
-            //TODO
+            Population.SelectAdults();
+            if (Population.SelectionProtocol == "A-I")
+            {
+                FitnessEvaluator.CalculatePopulationFitness(Population.CurrentPopulation);
+            }
+            if (SelectionMechanism != "Tournament")
+            {
+                ParentSelector.NormalizeRouletteWheel(Population.CurrentPopulation);
+            }
+            GenerateOffspring();
+
+            High = Population.CurrentPopulation.Max(x => x.Fitness);
+            BestOfRun = (MinCogPhenotype)Population.CurrentPopulation.FirstOrDefault(x => x.Fitness >= High);
+            Average = Population.CurrentPopulation.Average(x => x.Fitness);
+            SD = Math.Sqrt(Population.CurrentPopulation.Sum(x => Math.Pow((x.Fitness - Average), 2)) /
+                           Population.CurrentPopulation.Count);
         }
 
 

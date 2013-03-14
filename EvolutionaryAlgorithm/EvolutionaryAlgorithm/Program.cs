@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EvolutionaryAlgorithm.EvolutionaryAlgorithms;
+using System;
 using System.Windows.Forms;
 
 namespace EvolutionaryAlgorithm
@@ -11,16 +12,12 @@ namespace EvolutionaryAlgorithm
         [STAThread]
         private static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Simulator());
+            //Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new Simulator());
+            MinCog sn = new MinCog(20, 50, 0.1, 0.9, "A-I", "fitness-prop");
+            sn.EvolutionLoop();
 
-            //SpikingNeuron sn = new SpikingNeuron(20, 50, 1, 0.1, 0.9, "A-I", "fitness-prop", "time");
-            //sn.EvolutionLoop();
-            //sn = new SpikingNeuron(20, 50, 1, 0.1, 0.9, "A-I", "sigma", "interval");
-            //sn.EvolutionLoop();
-            //sn = new SpikingNeuron(20, 50, 1, 0.1, 0.9, "A-I", "tournament", "waveform");
-            //sn.EvolutionLoop();
         }
     }
 }

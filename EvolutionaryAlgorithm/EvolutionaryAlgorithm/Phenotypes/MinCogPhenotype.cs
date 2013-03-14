@@ -9,6 +9,8 @@ namespace EvolutionaryAlgorithm.Phenotypes
         public List<Node> HiddenNodes { get; set; }
         public List<Node> OutputNodes { get; set; }
         public Node BiasNode { get; set; }
+
+       
     }
 
 

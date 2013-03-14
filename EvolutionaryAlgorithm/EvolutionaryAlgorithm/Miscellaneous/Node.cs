@@ -8,6 +8,13 @@
         public double ActivationLevel { get; set; }
         public double Output { get; set; }
 
+        public Node()
+        {
+            UpstreamConnections = new PairList<Node, double>();
+        }
+        
+
+
         public void addConnections(params Node[] connections)
         {
             for (int i = 0; i < connections.Length; i++)

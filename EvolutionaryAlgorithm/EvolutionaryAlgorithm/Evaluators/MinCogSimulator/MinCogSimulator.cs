@@ -7,7 +7,7 @@ namespace EvolutionaryAlgorithm.Evaluators.MinCogSimulator
     {
         private readonly Random _random;
         public int[,] Board = new int[15,30];
-
+        
         public MinCogSimulator(MinCogPhenotype phenotype)
         {
             GoodHits = 0;
@@ -93,6 +93,7 @@ namespace EvolutionaryAlgorithm.Evaluators.MinCogSimulator
                 }
                 sensorNr++;
             }
+
             for (int j = Agent.CurrentPosition; j < Agent.CurrentPosition + 5; j++)
             {
                 if (j < Board.GetLength(1))
@@ -104,7 +105,7 @@ namespace EvolutionaryAlgorithm.Evaluators.MinCogSimulator
                     Board[Board.GetLength(0) - 1, j - Board.GetLength(1)] = 0;
                 }
             }
-
+            Agent.SetNewPosition(sensorReadings);
             for (int j = Agent.CurrentPosition; j < Agent.CurrentPosition + 5; j++)
             {
                 if (j < Board.GetLength(1))

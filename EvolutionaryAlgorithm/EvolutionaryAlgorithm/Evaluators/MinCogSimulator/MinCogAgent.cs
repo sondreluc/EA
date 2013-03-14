@@ -7,6 +7,7 @@ namespace EvolutionaryAlgorithm.Evaluators.MinCogSimulator
     public class MinCogAgent
     {
         public MinCogPhenotype Pheno;
+        public int CurrentPosition { get; set; }
 
         public MinCogAgent(MinCogPhenotype pheno)
         {
@@ -14,13 +15,11 @@ namespace EvolutionaryAlgorithm.Evaluators.MinCogSimulator
             CurrentPosition = 0;
         }
 
-        public int CurrentPosition { get; set; }
-
         /// <summary>
         ///     Gets a velocity from the neural net and returns the agents new position
         /// </summary>
         /// <param name="node">input from sensors</param>
-        public int GetNewPosition(bool[] inputs)
+        public void SetNewPosition(bool[] inputs)
         {
             for (int i = 0; i < inputs.Length; i++)
             {
@@ -39,7 +38,6 @@ namespace EvolutionaryAlgorithm.Evaluators.MinCogSimulator
 
             int velocity = getVelocity(Pheno.OutputNodes[0].Output, Pheno.OutputNodes[1].Output);
             CurrentPosition = CurrentPosition + velocity;
-            return CurrentPosition;
         }
 
         /// <summary>

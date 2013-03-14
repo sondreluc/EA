@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using EvolutionaryAlgorithm.Phenotypes;
+using EvolutionaryAlgorithm.Evaluators.MinCogSimulator;
 
 namespace EvolutionaryAlgorithm.Evaluators
 {
@@ -8,7 +9,8 @@ namespace EvolutionaryAlgorithm.Evaluators
     {
         public override void CalculateFitness(AbstractPhenotype phenotype)
         {
-            throw new NotImplementedException();
+            var sim = new MinCogSimulator.MinCogSimulator((MinCogPhenotype)phenotype);
+            sim.Simulate();
         }
 
         public override void CalculatePopulationFitness(List<AbstractPhenotype> phenotypes)
