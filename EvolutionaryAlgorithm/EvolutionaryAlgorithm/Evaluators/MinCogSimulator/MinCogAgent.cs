@@ -38,6 +38,15 @@ namespace EvolutionaryAlgorithm.Evaluators.MinCogSimulator
 
             int velocity = getVelocity(Pheno.OutputNodes[0].Output, Pheno.OutputNodes[1].Output);
             CurrentPosition = CurrentPosition + velocity;
+            if (CurrentPosition > 30)
+            {
+                CurrentPosition = 0;
+            }
+            if (CurrentPosition < 0)
+            {
+                CurrentPosition = 31 + CurrentPosition;
+            }
+
         }
 
         /// <summary>

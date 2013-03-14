@@ -10,6 +10,14 @@ namespace EvolutionaryAlgorithm.Phenotypes
         public List<Node> OutputNodes { get; set; }
         public Node BiasNode { get; set; }
 
+        public MinCogPhenotype(List<Node> inputNodes, List<Node> hiddenNodes, List<Node> outputNodes, Node bias)
+        {
+            InputNodes = inputNodes;
+            HiddenNodes = hiddenNodes;
+            OutputNodes = outputNodes;
+            BiasNode = bias;
+        }
+
        
     }
 

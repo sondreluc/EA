@@ -11,11 +11,15 @@ namespace EvolutionaryAlgorithm.Evaluators
         {
             var sim = new MinCogSimulator.MinCogSimulator((MinCogPhenotype)phenotype);
             sim.Simulate();
+            phenotype.Fitness = sim.GoodHits + sim.BadHits;
         }
 
         public override void CalculatePopulationFitness(List<AbstractPhenotype> phenotypes)
         {
-            throw new NotImplementedException();
+            foreach (AbstractPhenotype abstractPhenotype in phenotypes)
+            {
+                CalculateFitness(abstractPhenotype);
+            }
         }
     }
 }
