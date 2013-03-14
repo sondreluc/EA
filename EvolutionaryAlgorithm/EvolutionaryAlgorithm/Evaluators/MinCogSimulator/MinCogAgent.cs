@@ -10,5 +10,6 @@ namespace EvolutionaryAlgorithm.Evaluators.MinCogSimulator
     public class MinCogAgent
     {
         public MinCogPhenotype Pheno;
+        public int CurrentPosition { get; set; }
     }
 }
