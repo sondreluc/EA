@@ -42,6 +42,10 @@ namespace EvolutionaryAlgorithm.EvolutionaryAlgorithms
                                                       ? ParentSelector.TournamentSelection(
                                                           Population.CurrentPopulation, 2, 2, 0.25)
                                                       : ParentSelector.SelectParents(Population.CurrentPopulation, 2);
+                if (parents[0] == null )
+                {
+                    
+                }
                 List<BitVector> offsprings = GeneticOperators.Crossover(parents[0], parents[1], CrossoverRate);
 
                 GeneticOperators.Mutate(MutationRate, offsprings[0]);

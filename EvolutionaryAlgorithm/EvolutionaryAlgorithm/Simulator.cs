@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using EvolutionaryAlgorithm.Evaluators.MinCogSimulator;
+using EvolutionaryAlgorithm.Phenotypes;
 
 namespace EvolutionaryAlgorithm
 {
@@ -22,37 +23,37 @@ namespace EvolutionaryAlgorithm
         public Pen p = new Pen(Color.Black);
         public MinCogSimulator sim;
 
-        public Simulator()
+        public Simulator(MinCogPhenotype phenotype) 
         {
             InitializeComponent();
             _random = new Random();
-            sim = new MinCogSimulator(null);
+            sim = new MinCogSimulator(phenotype);
         }
 
         private void Run(object sender, PaintEventArgs e)
         {
-            for (int i = 0; i < 10; i++)
+
+            int count = 0;
+            while (count < 40)
             {
-                int count = 0;
-                while (count < 40)
+                sim.CurrentBlockSize = _random.Next(1, 6);
+                sim.CurrentBlockXPos = _random.Next(30 - sim.CurrentBlockSize);
+
+                for (int j = 0; j < sim.Board.GetLength(0); j++)
                 {
-                    sim.CurrentBlockSize = _random.Next(1, 6);
-                    sim.CurrentBlockXPos = _random.Next(30 - sim.CurrentBlockSize);
-
-                    for (int j = 0; j < sim.Board.GetLength(0); j++)
-                    {
-                        sim.TimeStep(sim.CurrentBlockXPos, sim.CurrentBlockSize, j);
-                        DrawArray(e.Graphics, sim.Board);
-                        Thread.Sleep(100);
-                    }
-
-                    for (int j = sim.CurrentBlockSize; j < sim.CurrentBlockSize; j++)
-                    {
-                        sim.Board[sim.Board.GetLength(0) - 1, i] = 0;
-                    }
-                    count++;
+                    sim.TimeStep(sim.CurrentBlockXPos, sim.CurrentBlockSize, j);
+                    DrawArray(e.Graphics, sim.Board);
+                    Thread.Sleep(100);
                 }
+
+                for (int j = sim.CurrentBlockSize; j < sim.CurrentBlockSize; j++)
+                {
+                    sim.Board[sim.Board.GetLength(0) - 1, j] = 0;
+                }
+                count++;
             }
+            System.Diagnostics.Debug.WriteLine(sim.BadHits);
+            System.Diagnostics.Debug.WriteLine(sim.GoodHits);
         }
 
         public void DrawArray(Graphics g, int[,] array)

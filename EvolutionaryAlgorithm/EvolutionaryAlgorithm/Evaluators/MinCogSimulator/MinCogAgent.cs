@@ -63,7 +63,7 @@ namespace EvolutionaryAlgorithm.Evaluators.MinCogSimulator
             }
             dy = (-node.ActivationLevel + s)/node.TimeConstant; // Bias included in s
             node.ActivationLevel = node.ActivationLevel + dy;
-            node.Output = 1/(1 + Math.Pow(Math.E, (node.Gain*node.ActivationLevel)));
+            node.Output = 1/(1 + Math.Pow(Math.E, -(node.Gain*node.ActivationLevel)));
         }
 
         /// <summary>

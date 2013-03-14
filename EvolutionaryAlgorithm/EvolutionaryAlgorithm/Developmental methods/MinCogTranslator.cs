@@ -50,8 +50,8 @@ namespace EvolutionaryAlgorithm.Developmental_methods
                 outputNode.TimeConstant = binaryToDoubleRange(genom.GetRange(index++*8, 8), 1.0, 2.0);
             }
 
-            MinCogPhenotype pheno = new MinCogPhenotype(InputNodes, HiddenNodes, OutPutNodes,BiasNode);
-            pheno.Genotype = genom;
+            MinCogPhenotype pheno = new MinCogPhenotype(InputNodes, HiddenNodes, OutPutNodes, BiasNode){Genotype = genom, Fitness = 0.0, RouletteProportion= 0.0
+};
             return pheno;
         }
     }

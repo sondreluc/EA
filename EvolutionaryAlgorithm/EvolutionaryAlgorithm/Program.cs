@@ -15,9 +15,11 @@ namespace EvolutionaryAlgorithm
             //Application.EnableVisualStyles();
             //Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Simulator());
-            MinCog sn = new MinCog(20, 50, 0.1, 0.9, "A-I", "fitness-prop");
+            MinCog sn = new MinCog(100, 150, 0.1, 0.9, "A-I", "sigma");
             sn.EvolutionLoop();
-
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Simulator(sn.BestOfRun));
         }
     }
 }

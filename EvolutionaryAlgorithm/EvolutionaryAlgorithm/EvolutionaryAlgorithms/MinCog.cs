@@ -20,6 +20,7 @@ namespace EvolutionaryAlgorithm.EvolutionaryAlgorithms
         public Node BiasNode { get; set; }
         public List<Node> HiddenNodes { get; set; }
         public List<Node> OutputNodes { get; set; }
+        public MinCogPhenotype TheOneAndOnly { get; set; }
 
         public MinCog(int populationSize, int generations, double mutationRate,
                       double crossoverRate, string selectionProtocol, string selectionMechanism)
@@ -59,12 +60,26 @@ namespace EvolutionaryAlgorithm.EvolutionaryAlgorithms
         }
 
 
-
         public override void EvolutionLoop()
         {
             for (int i = 0; i < Generations; i++)
             {
+                
                 Evolve();
+                System.Diagnostics.Debug.WriteLine("Generation:" + i);
+                System.Diagnostics.Debug.WriteLine("High:" + High);
+                System.Diagnostics.Debug.WriteLine("AVG:" + Average);
+                System.Diagnostics.Debug.WriteLine("SD:" + SD);
+                System.Diagnostics.Debug.WriteLine("Best:" + BestOfRun.Fitness);
+                if (TheOneAndOnly == null)
+                {
+                    TheOneAndOnly = BestOfRun;
+                }
+
+                if (BestOfRun.Fitness > TheOneAndOnly.Fitness)
+                {
+                    TheOneAndOnly = BestOfRun;
+                }
             }
         }
 
@@ -102,7 +117,7 @@ namespace EvolutionaryAlgorithm.EvolutionaryAlgorithms
 
             // Bias Node
             BiasNode = new Node();
-            BiasNode.ActivationLevel = 1.0;
+            BiasNode.Output = 1.0;
 
             // Hidden Nodes
             var hidden1 = new Node();
