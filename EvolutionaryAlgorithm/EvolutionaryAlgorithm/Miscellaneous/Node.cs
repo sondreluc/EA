@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EvolutionaryAlgorithm.Miscellaneous
 {
-    class Node
+    public class Node
     {
         public PairList<Node, double> UpstreamConnections { get; set; }
         public double Gain { get; set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EvolutionaryAlgorithm.Miscellaneous
 {
-    class Pair<Left, Right>
+    public class Pair<Left, Right>
     {
         public Left left { get; set; }
         public Right right { get; set; }
@@ -18,7 +18,7 @@ namespace EvolutionaryAlgorithm.Miscellaneous
         }
 
     }
-    class PairList<Left, Right> : List<Pair<Left, Right>>
+    public class PairList<Left, Right> : List<Pair<Left, Right>>
     {
         public void Add(Left left, Right right)
         {

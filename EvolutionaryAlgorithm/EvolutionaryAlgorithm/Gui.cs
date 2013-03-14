@@ -12,7 +12,6 @@ namespace EvolutionaryAlgorithm
     {
 
         private static readonly Random Random = new Random();
-        private bool stop;
 
         public Gui()
         {

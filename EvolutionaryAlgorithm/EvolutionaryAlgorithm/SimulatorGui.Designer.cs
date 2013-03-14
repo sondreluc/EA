@@ -1,6 +1,6 @@
 ﻿namespace EvolutionaryAlgorithm
 {
-    partial class Drawings
+    partial class Simulator
     {
         /// <summary>
         /// Required designer variable.
@@ -30,15 +30,16 @@
         {
             this.SuspendLayout();
             // 
-            // Drawings
+            // Simulator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(299, 156);
-            this.Name = "Drawings";
-            this.Text = "drawings";
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Test);
+            this.Name = "Simulator";
+            this.Text = "MinCog Simulator";
+            this.Load += new System.EventHandler(this.Drawings_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Run);
             this.ResumeLayout(false);
 
         }

@@ -15,7 +15,7 @@ namespace EvolutionaryAlgorithm
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Drawings());
+            Application.Run(new Simulator());
 
             //SpikingNeuron sn = new SpikingNeuron(20, 50, 1, 0.1, 0.9, "A-I", "fitness-prop", "time");
             //sn.EvolutionLoop();
