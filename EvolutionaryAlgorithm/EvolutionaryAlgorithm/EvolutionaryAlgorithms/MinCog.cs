@@ -4,6 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EvolutionaryAlgorithm.Miscellaneous;
+using EvolutionaryAlgorithm.Genetic_Operators;
+using EvolutionaryAlgorithm.Selection_Mechanisms;
+using EvolutionaryAlgorithm.Evaluators;
+using EvolutionaryAlgorithm.Populations;
+using EvolutionaryAlgorithm.Developmental_methods;
 
 namespace EvolutionaryAlgorithm.EvolutionaryAlgorithms
 {
@@ -13,12 +18,44 @@ namespace EvolutionaryAlgorithm.EvolutionaryAlgorithms
         public List<Node> InputNodes { get; set; }
         public Node BiasNode { get; set; }
         public List<Node> HiddenNodes { get; set; }
-        public List<Node> OutPutNodes { get; set; }
+        public List<Node> OutputNodes { get; set; }
 
         public MinCog(int populationSize, int generations, double mutationRate, 
             double crossoverRate, string selectionProtocol, string selectionMechanism)
         {
+            GeneticOperators = new BinaryOperators();
+            PopulationSize = populationSize;
+            Generations = generations;
+            MutationRate = mutationRate;
+            CrossoverRate = crossoverRate;
+
+            switch (selectionMechanism.ToLower())
+            {
+                case "fitness-prop":
+                    ParentSelector = new FitnessProportionate();
+                    SelectionMechanism = selectionMechanism;
+                    break;
+                case "sigma":
+                    ParentSelector = new SigmaScaling();
+                    SelectionMechanism = selectionMechanism;
+                    break;
+                case "tournament":
+                    ParentSelector = new Tournament();
+                    SelectionMechanism = selectionMechanism;
+                    break;
+                case "rank":
+                    ParentSelector = new Rank();
+                    SelectionMechanism = selectionMechanism;
+                    break;
+            }
             createGraph();
+
+            MinCogTranslator translator = new MinCogTranslator(InputNodes, BiasNode, HiddenNodes, OutputNodes);
+
+            FitnessEvaluator = new MinCogFitness();
+            Population = new BinaryPopulation(PopulationSize, 272, selectionProtocol, FitnessEvaluator, translator, 0, 2);
+            FitnessEvaluator.CalculatePopulationFitness(Population.CurrentPopulation);
+
         }
 
         public override void EvolutionLoop()
@@ -62,7 +99,7 @@ namespace EvolutionaryAlgorithm.EvolutionaryAlgorithms
             out1.addConnections(hidden1, hidden2, out1, out2, BiasNode);
             out2.addConnections(hidden1, hidden2, out1, out2, BiasNode);
 
-            OutPutNodes = new List<Node>() { out1, out2 };
+            OutputNodes = new List<Node>() { out1, out2 };
         }
 
         //private void createGraph()
