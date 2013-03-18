@@ -9,6 +9,7 @@ namespace EvolutionaryAlgorithm.Evaluators.MinCogSimulator
     {
         public MinCogPhenotype Pheno;
         public int CurrentPosition { get; set; }
+        public int Velocity { get; set; }
 
         public MinCogAgent(MinCogPhenotype pheno)
         {
@@ -89,10 +90,41 @@ namespace EvolutionaryAlgorithm.Evaluators.MinCogSimulator
         /// <param name="right">Output of right node</param>
         public int getVelocity(double left, double right)
         {
-            double vote = left - right;
-            vote = vote*4.0;
-            Double velocity = Math.Round(vote);
-            return Convert.ToInt32(velocity);
-        }
+            double sum = left + right;
+            left = left / sum;
+            right = right / sum;
+
+            int direction = (left > right) ? -1 : 1;
+
+            double stopTreshold = 0.25;
+            double diff = left - right;
+            double absoluteDifference = Math.Abs(left - right);
+
+            if (absoluteDifference < stopTreshold)
+            {
+                this.Velocity = 0 * direction;
+                return this.Velocity;
+            }
+
+            if (absoluteDifference < 0.4)
+            {
+                this.Velocity = 1 * direction;
+                return this.Velocity;
+            }
+            if (absoluteDifference < 0.6)
+            {
+                this.Velocity = 2 * direction;
+                return this.Velocity;
+            }
+            if (absoluteDifference < 0.8)
+            {
+                this.Velocity = 3 * direction;
+                return this.Velocity;
+            }
+
+            this.Velocity = 4 * direction;
+            return this.Velocity;
+
+        }  
     }
 }
