@@ -175,19 +175,19 @@ namespace EvolutionaryAlgorithm.Evaluators.MinCogSimulator
             CurrentBlockSize = _random.Next(1, 7);
             CurrentBlockXPos = _random.Next(30);
             CurrentBlockYPos = 0;
-            for (int x = CurrentBlockXPos; x < CurrentBlockXPos + 5; x++)
+            for (int x = CurrentBlockXPos; x < CurrentBlockXPos + CurrentBlockSize; x++)
                 Board[0, x % Board.GetLength(1)] = 2;
         }
 
         public void FallOneStep(int dx, int dy)
         {
-            for (int x = CurrentBlockXPos; x < CurrentBlockXPos + 5; x++)
+            for (int x = CurrentBlockXPos; x < CurrentBlockXPos + CurrentBlockSize; x++)
                 Board[CurrentBlockYPos, x % 30] = 0;
 
             CurrentBlockYPos += dy;
             CurrentBlockXPos += dx;
 
-            for (int x = CurrentBlockXPos; x < CurrentBlockXPos + 5; x++)
+            for (int x = CurrentBlockXPos; x < CurrentBlockXPos + CurrentBlockSize; x++)
                 Board[CurrentBlockYPos, x % 30] += 2;      
         }
 
