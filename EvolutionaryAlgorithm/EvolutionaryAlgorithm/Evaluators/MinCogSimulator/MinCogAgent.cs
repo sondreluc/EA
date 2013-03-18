@@ -21,17 +21,7 @@ namespace EvolutionaryAlgorithm.Evaluators.MinCogSimulator
         /// <param name="node">input from sensors</param>
         public void SetNewPosition(bool[] inputs)
         {
-            foreach (Node hiddenNode in Pheno.HiddenNodes)
-            {
-                hiddenNode.ActivationLevel = 0;
-                hiddenNode.Output = 0;
-            }
 
-            foreach (Node motorNode in Pheno.OutputNodes)
-            {
-                motorNode.ActivationLevel = 0;
-                motorNode.Output = 0;
-            }
 
             for (int i = 0; i < inputs.Length; i++)
             {
