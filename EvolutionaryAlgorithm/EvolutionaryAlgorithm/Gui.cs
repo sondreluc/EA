@@ -359,7 +359,7 @@ namespace EvolutionaryAlgorithm
                         Update();
                         if (i == genes-1)
                         {
-                            var simulator = new Simulator(mc.BestOfRun);
+                            var simulator = new Simulator(mc.TheOneAndOnly);
                             simulator.Show();
                         }
                     }
