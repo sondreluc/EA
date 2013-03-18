@@ -121,9 +121,9 @@ namespace EvolutionaryAlgorithm.EvolutionaryAlgorithms
 
             // Hidden Nodes
             var hidden1 = new Node("hidden1");
-            hidden1.ActivationLevel = 0;
+            hidden1.InternalState = 0;
             var hidden2 = new Node("hidden2");
-            hidden2.ActivationLevel = 0;
+            hidden2.InternalState = 0;
 
             hidden1.addConnections(in1, in2, in3, in4, in5, hidden1, hidden2, BiasNode);
             hidden2.addConnections(in1, in2, in3, in4, in5, hidden1, hidden2, BiasNode);

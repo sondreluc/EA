@@ -27,13 +27,13 @@ namespace EvolutionaryAlgorithm.Developmental_methods
 
             foreach (Node hiddenNode in HiddenNodes)
             {
-                hiddenNode.ActivationLevel = 0;
+                hiddenNode.InternalState = 0;
                 hiddenNode.Output = 0;
             }
 
             foreach (Node motorNode in OutPutNodes)
             {
-                motorNode.ActivationLevel = 0;
+                motorNode.InternalState = 0;
                 motorNode.Output = 0;
             }
 

@@ -6,7 +6,7 @@
         public string Name { get; private set; }
         public double Gain { get; set; }
         public double TimeConstant { get; set; }
-        public double ActivationLevel { get; set; }
+        public double InternalState { get; set; }
         public double Output { get; set; }
 
         public Node(string name)

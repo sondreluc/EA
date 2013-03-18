@@ -63,9 +63,9 @@ namespace EvolutionaryAlgorithm.Evaluators.MinCogSimulator
             {
                 s += upstreamConnection.left.Output*upstreamConnection.right;
             }
-            dy = (-node.ActivationLevel + s)/node.TimeConstant; // Bias included in s
-            node.ActivationLevel = node.ActivationLevel + dy;
-            node.Output = 1 / (1 + Math.Pow(Math.E, -(node.Gain * node.ActivationLevel)));
+            dy = (-node.InternalState + s)/node.TimeConstant; // Bias included in s
+            node.InternalState = node.InternalState + dy;
+            node.Output = 1 / (1 + Math.Pow(Math.E, -(node.Gain * node.InternalState)));
         }
 
         /// <summary>
