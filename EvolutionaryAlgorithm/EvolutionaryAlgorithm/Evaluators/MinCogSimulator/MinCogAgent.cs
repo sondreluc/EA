@@ -21,6 +21,18 @@ namespace EvolutionaryAlgorithm.Evaluators.MinCogSimulator
         /// <param name="node">input from sensors</param>
         public void SetNewPosition(bool[] inputs)
         {
+            foreach (Node hiddenNode in Pheno.HiddenNodes)
+            {
+                hiddenNode.ActivationLevel = 0;
+                hiddenNode.Output = 0;
+            }
+
+            foreach (Node motorNode in Pheno.OutputNodes)
+            {
+                motorNode.ActivationLevel = 0;
+                motorNode.Output = 0;
+            }
+
             for (int i = 0; i < inputs.Length; i++)
             {
                 Pheno.InputNodes[i].Output = inputs[i] ? 1.0 : 0.0;
@@ -63,7 +75,7 @@ namespace EvolutionaryAlgorithm.Evaluators.MinCogSimulator
             }
             dy = (-node.ActivationLevel + s)/node.TimeConstant; // Bias included in s
             node.ActivationLevel = node.ActivationLevel + dy;
-            node.Output = 1/(1 + Math.Pow(Math.E, -(node.Gain*node.ActivationLevel)));
+            node.Output = 1 / (1 + Math.Pow(Math.E, -(node.Gain * node.ActivationLevel)));
         }
 
         /// <summary>
