@@ -33,24 +33,39 @@ namespace EvolutionaryAlgorithm
         private void Run(object sender, PaintEventArgs e)
         {
 
-            int count = 0;
-            while (count < 40)
+            //int count = 0;
+            //while (count < 40)
+            //{
+            //    sim.CurrentBlockSize = _random.Next(1, 6);
+            //    sim.CurrentBlockXPos = _random.Next(30 - sim.CurrentBlockSize);
+
+            //    for (int j = 0; j < sim.Board.GetLength(0); j++)
+            //    {
+            //        sim.TimeStep(sim.CurrentBlockXPos, sim.CurrentBlockSize, j);
+            //        DrawArray(e.Graphics, sim.Board);
+            //        Thread.Sleep(100);
+            //    }
+
+            //    for (int j = sim.CurrentBlockSize; j < sim.CurrentBlockSize; j++)
+            //    {
+            //        sim.Board[sim.Board.GetLength(0) - 1, j] = 0;
+            //    }
+            //    count++;
+            //}
+
+            for (int blockNo = 0; blockNo < 40; blockNo++)
             {
-                sim.CurrentBlockSize = _random.Next(1, 6);
-                sim.CurrentBlockXPos = _random.Next(30 - sim.CurrentBlockSize);
-
-                for (int j = 0; j < sim.Board.GetLength(0); j++)
+                sim.SpawnBlock();
+                while (sim.CurrentBlockYPos < 14)
                 {
-                    sim.TimeStep(sim.CurrentBlockXPos, sim.CurrentBlockSize, j);
-                    DrawArray(e.Graphics, sim.Board);
+                    sim.PassSensorReading();
+                    sim.FallOneStep(0, 1);
                     Thread.Sleep(100);
+                    DrawArray(e.Graphics, sim.Board);
                 }
-
-                for (int j = sim.CurrentBlockSize; j < sim.CurrentBlockSize; j++)
-                {
-                    sim.Board[sim.Board.GetLength(0) - 1, j] = 0;
-                }
-                count++;
+                sim.CheckHits(0.80);
+                DrawArray(e.Graphics, sim.Board);
+                Thread.Sleep(100);
             }
             System.Diagnostics.Debug.WriteLine(sim.BadHits);
             System.Diagnostics.Debug.WriteLine(sim.GoodHits);

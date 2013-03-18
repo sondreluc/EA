@@ -31,6 +31,7 @@ namespace EvolutionaryAlgorithm.Evaluators.MinCogSimulator
         public int CurrentBlockXPos { get; set; }
         public int CurrentBlockYPos { get; set; }
 
+        /*
         public void CheckForHit()
         {
             if (CurrentBlockSize > 5)
@@ -51,7 +52,9 @@ namespace EvolutionaryAlgorithm.Evaluators.MinCogSimulator
             }
         }
 
-        public void Simulate()
+      
+
+        public void Simulate11()
         {
             int count = 0;
             while (count < 40)
@@ -149,5 +152,94 @@ namespace EvolutionaryAlgorithm.Evaluators.MinCogSimulator
                 CurrentBlockYPos++;
             }
         }
-    }
+*/
+        // ------------- NEW VERSION ---------------------
+
+        public void Simulate()
+        {
+            for(int blockNo = 0; blockNo < 40; blockNo++)           
+            {
+                SpawnBlock();
+                while (CurrentBlockYPos < 14)
+                {
+                    PassSensorReading();
+                    FallOneStep(0,1);
+                }
+                CheckHits(0.80);     
+            }
+
+        }
+
+        public void SpawnBlock()
+        {
+            CurrentBlockSize = _random.Next(1, 7);
+            CurrentBlockXPos = _random.Next(30);
+            CurrentBlockYPos = 0;
+            for (int x = CurrentBlockXPos; x < CurrentBlockXPos + 5; x++)
+                Board[0, x % Board.GetLength(1)] = 2;
+        }
+
+        public void FallOneStep(int dx, int dy)
+        {
+            for (int x = CurrentBlockXPos; x < CurrentBlockXPos + 5; x++)
+                Board[CurrentBlockYPos, x % 30] = 0;
+
+            CurrentBlockYPos += dy;
+            CurrentBlockXPos += dx;
+
+            for (int x = CurrentBlockXPos; x < CurrentBlockXPos + 5; x++)
+                Board[CurrentBlockYPos, x % 30] += 2;      
+        }
+
+        public void PassSensorReading()
+        {
+            bool[] sensorReading = new bool[5];
+            int index = 0;
+            for (int x = Agent.CurrentPosition; x < Agent.CurrentPosition + 5; x++)
+            {
+                int y = CurrentBlockYPos;
+                if (Board[y, x % 30] == 2)
+                    sensorReading[index++] = true;
+                else
+                    sensorReading[index++] = false;
+            }
+
+            redrawAgent(0);
+            Agent.SetNewPosition(sensorReading);
+            redrawAgent(1);
+        }
+
+        public void redrawAgent(int val)
+        {
+            for (int x = Agent.CurrentPosition; x < Agent.CurrentPosition + 5; x++)
+            {
+                int y = Board.GetLength(0)-1;
+                Board[y, x % 30] = val;
+            }
+        }
+
+        public void CheckHits(double threshold)
+        {
+            int hits = 0;
+
+            for(int x = 0; x < Board.GetLength(1); x++)
+            {
+                int y = Board.GetLength(0)-1;
+                if (Board[y, x] == 3)
+                {
+                    Board[y, x] = 1;
+                    hits++;
+                }
+                if (Board[y, x] == 2)
+                    Board[y, x] = 0;
+            }
+
+            double hitRatio = (double) hits / CurrentBlockSize;
+
+            if (CurrentBlockSize == 6 && hits > 0)
+                BadHits++;
+            else if (hitRatio >= threshold)
+                GoodHits++;
+        }
+    }  
 }
