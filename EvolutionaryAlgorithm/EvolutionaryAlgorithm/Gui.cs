@@ -125,6 +125,7 @@ namespace EvolutionaryAlgorithm
                 OneMax oneMax = null;
                 ColonelBlotto colonelBlotto = null;
                 SpikingNeuron sn = null;
+                MinCog mc = null;
                 var oneMaxGoalVector = new List<int>();
                 if (problemBox.Text == "OneMax")
                 {
@@ -152,12 +153,15 @@ namespace EvolutionaryAlgorithm
                                                       replacfract, lossfract);
                 }
 
-                else
+                else if (problemBox.Text == "Izhikevich Spiking Neuron")
                 {
                     sn = new SpikingNeuron(popSize, genes, Convert.ToInt16(problemComboBox2.Text), mutRate, xOverRate,
                                            prot, mech, problemComboBox1.Text);
                 }
-
+                else
+                {
+                    mc = new MinCog(popSize, genes, mutRate, xOverRate, prot, mech);  
+                }
 
                 FitnessChart.Series["Highest fitness"].Points.Clear();
                 FitnessChart.Series["Average fitness"].Points.Clear();
@@ -198,6 +202,8 @@ namespace EvolutionaryAlgorithm
                     }
                     Update();
                 }
+
+
                 double best = 0.0;
                 for (int i = 0; i < genes; i++)
                 {
@@ -337,6 +343,28 @@ namespace EvolutionaryAlgorithm
 
                         Update();
                     }
+                    else if (problemBox.Text == "MinCog" && mc != null)
+                    {
+                        mc.Evolve();
+                        FitnessChart.Series["Highest fitness"].Points.AddXY
+                            (i, mc.High);
+                        FitnessChart.Series["Average fitness"].Points.AddXY
+                            (i, mc.Average);
+                        FitnessChart.Series["Standard deviation"].Points.AddXY
+                            (i, mc.SD);
+                        dataGridView1.Rows.Add(i + 1, mc.High, mc.Average, mc.SD);
+                        dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.RowCount - 1;
+                        dataGridView1.Refresh();
+
+                        Update();
+                        if (i == genes-1)
+                        {
+                            var simulator = new Simulator(mc.BestOfRun);
+                            simulator.Show();
+                        }
+                    }
+                    
+
                     outputTextBox.Select(outputTextBox.Text.Length - 1, 0);
                     outputTextBox.ScrollToCaret();
                 }
@@ -416,19 +444,25 @@ namespace EvolutionaryAlgorithm
                     genotypeSize.Text = "35";
                     genotypeSize.ReadOnly = true;
                     break;
+                case "MinCog":
+                    label2.Text = "Genotype size";
+                    genotypeSize.Text = "272";
+                    genotypeSize.ReadOnly = false;
+                    probLabel1.Visible = false;
+                    problemComboBox1.Location = problemTextBox1.Location;
+                    problemComboBox1.Visible = false;
+                    problemComboBox1.Items.Clear();
+                    problemTextBox2.Visible =
+                        problemTextBox3.Visible =
+                        problemTextBox4.Visible = problemTextBox5.Visible = problemTextBox6.Visible = false;
+                    probLabel2.Text = probLabel3.Text = probLabel4.Text = probLabel5.Text = probLabel6.Text = "";
+                    FitnessChart.Series.FindByName("AvgEntropy").Enabled = false;
+                    dataGridView1.Columns["Average strategy entropy"].Visible = false;
+                    FitnessChart.ChartAreas["ChartArea2"].Visible = false;
+                    FitnessChart.Width = 980;
+                    SpikeTrainChart.Visible = false;
+                    break;
             }
-        }
-
-        private void chart1_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void test(PaintEventArgs e)
-        {
-            Graphics g = CreateGraphics();
-            var p = new Pen(Color.Red, 2);
-
-            g.DrawRectangle(p, 5, 40, 100, 40);
         }
     }
 }

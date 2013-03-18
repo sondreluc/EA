@@ -82,6 +82,7 @@ namespace EvolutionaryAlgorithm.Populations
                         Evaluator.CalculatePopulationFitness(phenoOffsprings);
 
                         CurrentPopulation.AddRange(phenoOffsprings);
+                        Offsprings.Clear();
                         CurrentPopulation.Sort();
                         CurrentPopulation = CurrentPopulation.GetRange(CurrentPopulation.Count - size - 1, size);
                         break;

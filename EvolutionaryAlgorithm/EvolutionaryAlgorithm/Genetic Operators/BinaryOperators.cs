@@ -42,7 +42,7 @@ namespace EvolutionaryAlgorithm.Genetic_Operators
             {
                 for (int i = 0; i < par1.Vector.Count; i++)
                 {
-                    if (i <= par1.Vector.Count/2)
+                    if (i <= randomIndex)
                     {
                         child1.Vector.Add(par1.Vector[i]);
                         child2.Vector.Add(par2.Vector[i]);
