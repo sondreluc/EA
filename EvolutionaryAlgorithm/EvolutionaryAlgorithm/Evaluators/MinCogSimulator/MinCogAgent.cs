@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using EvolutionaryAlgorithm.Miscellaneous;
 using EvolutionaryAlgorithm.Phenotypes;
 
@@ -12,6 +13,18 @@ namespace EvolutionaryAlgorithm.Evaluators.MinCogSimulator
         public MinCogAgent(MinCogPhenotype pheno)
         {
             Pheno = pheno;
+            foreach (Node hiddenNode in pheno.HiddenNodes)
+            {
+                hiddenNode.InternalState = 0;
+                hiddenNode.Output = 0;
+            }
+
+            foreach (Node motorNode in pheno.OutputNodes)
+            {
+                motorNode.InternalState = 0;
+                motorNode.Output = 0;
+            }
+            Debug.Assert(pheno.HiddenNodes[0].InternalState == 0);
             CurrentPosition = 0;
         }
 
