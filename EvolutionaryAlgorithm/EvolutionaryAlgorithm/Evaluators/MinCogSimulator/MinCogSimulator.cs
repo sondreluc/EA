@@ -174,7 +174,8 @@ namespace EvolutionaryAlgorithm.Evaluators.MinCogSimulator
 
         public void SpawnBlock()
         {
-            CurrentBlockSize = _random.Next(1, 7);
+            CurrentBlockSize = _random.NextDouble() > (double) 1/3 ? _random.Next(1, 6) : 6;
+
             CurrentBlockXPos = _random.Next(30);
             CurrentBlockYPos = 0;
             for (int x = CurrentBlockXPos; x < CurrentBlockXPos + CurrentBlockSize; x++)
