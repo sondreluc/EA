@@ -1,5 +1,6 @@
 ﻿using System;
 using EvolutionaryAlgorithm.Phenotypes;
+using EvolutionaryAlgorithm.EvolutionaryAlgorithms;
 
 namespace EvolutionaryAlgorithm.Evaluators.MinCogSimulator
 {
@@ -160,10 +161,11 @@ namespace EvolutionaryAlgorithm.Evaluators.MinCogSimulator
             for(int blockNo = 0; blockNo < 40; blockNo++)           
             {
                 SpawnBlock();
+                int dx = MinCog.randomHorizontalVelocity ? -_random.Next(-1, 2) : 0;
                 while (CurrentBlockYPos < 14)
                 {
                     PassSensorReading();
-                    FallOneStep(0,1);
+                    FallOneStep(dx,1);
                 }
                 CheckHits(0.80);     
             }
@@ -182,13 +184,13 @@ namespace EvolutionaryAlgorithm.Evaluators.MinCogSimulator
         public void FallOneStep(int dx, int dy)
         {
             for (int x = CurrentBlockXPos; x < CurrentBlockXPos + CurrentBlockSize; x++)
-                Board[CurrentBlockYPos, x % 30] = 0;
+                Board[CurrentBlockYPos, modulo(x, 30)] = 0;
 
             CurrentBlockYPos += dy;
             CurrentBlockXPos += dx;
 
             for (int x = CurrentBlockXPos; x < CurrentBlockXPos + CurrentBlockSize; x++)
-                Board[CurrentBlockYPos, x % 30] += 2;      
+                Board[CurrentBlockYPos, modulo(x, 30)] += 2;      
         }
 
         public void PassSensorReading()
@@ -240,6 +242,17 @@ namespace EvolutionaryAlgorithm.Evaluators.MinCogSimulator
                 BadHits++;
             else if (hitRatio >= threshold)
                 GoodHits++;
+        }
+
+        /// <summary>
+        /// Modulo operator that handles negitive values properly
+        /// </summary>
+        /// <param name="val"></param>
+        /// <param name="mod"></param>
+        /// <returns></returns>
+        private int modulo(int val, int mod)
+        {
+            return (val % mod + mod) % mod;
         }
     }  
 }

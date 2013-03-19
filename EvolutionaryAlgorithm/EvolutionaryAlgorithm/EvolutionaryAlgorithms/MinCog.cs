@@ -17,7 +17,7 @@ namespace EvolutionaryAlgorithm.EvolutionaryAlgorithms
 
         public MinCogPhenotype BestOfRun { get; set; }
         public MinCogPhenotype TheOneAndOnly { get; set; }
-
+        public static bool randomHorizontalVelocity = false;
         public MinCog(int populationSize, int generations, double mutationRate,
                       double crossoverRate, string selectionProtocol, string selectionMechanism)
         {
