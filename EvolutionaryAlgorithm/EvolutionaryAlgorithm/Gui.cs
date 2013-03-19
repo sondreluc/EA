@@ -357,6 +357,16 @@ namespace EvolutionaryAlgorithm
                         dataGridView1.Refresh();
 
                         Update();
+
+                        if (mc.TheOneAndOnly == null)
+                        {
+                            mc.TheOneAndOnly = mc.BestOfRun;
+                        }
+
+                        if (mc.BestOfRun.Fitness > mc.TheOneAndOnly.Fitness)
+                        {
+                            mc.TheOneAndOnly = mc.BestOfRun;
+                        }
                         if (i == genes-1)
                         {
                             var simulator = new Simulator(mc.TheOneAndOnly);

@@ -23,6 +23,15 @@ namespace EvolutionaryAlgorithm.Genetic_Operators
                 int randomIndex = _random.Next(0, genotype.Vector.Count);
                 genotype.Vector[randomIndex] = (genotype.Vector[randomIndex] == 0 ? 1 : 0);
             }
+
+            //for (int i = 0; i + 8 < genotype.Vector.Count; i += 8)
+            //{
+            //    if (_random.NextDouble() <= mutationRate)
+            //    {
+            //        int randomIndex = _random.Next(0, 8);
+            //        genotype.Vector[randomIndex] = (genotype.Vector[randomIndex + i] == 0 ? 1 : 0);
+            //    }
+            //}
         }
 
         public override List<BitVector> Crossover(AbstractPhenotype parent1, AbstractPhenotype parent2,
@@ -42,6 +51,21 @@ namespace EvolutionaryAlgorithm.Genetic_Operators
             {
                 for (int i = 0; i < par1.Vector.Count; i++)
                 {
+                    //for (int j = i; j < i + 8; j++)
+                    //{
+                    //    if (_random.NextDouble() > 0.5)
+                    //    {
+                    //        child1.Vector.Add(par1.Vector[i]);
+                    //        child2.Vector.Add(par2.Vector[i]);
+                    //    }
+                    //    else
+                    //    {
+                    //        child1.Vector.Add(par2.Vector[i]);
+                    //        child2.Vector.Add(par1.Vector[i]);
+                    //    }
+
+                    //}
+
                     if (i <= randomIndex)
                     {
                         child1.Vector.Add(par1.Vector[i]);
