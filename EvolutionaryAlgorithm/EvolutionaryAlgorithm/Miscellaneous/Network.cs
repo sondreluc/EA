@@ -14,7 +14,7 @@ namespace EvolutionaryAlgorithm.Miscellaneous
         public List<Node> OutputNodes { get; set; }
 
 
-        private void createGraph()
+        public void createGraph()
         {
             // Input Nodes (Sensor)
             var in1 = new Node("in1");

@@ -50,6 +50,7 @@
     <Compile Include="Developmental methods\IzhikevichTranslator.cs" />
     <Compile Include="Developmental methods\MinCogTranslator.cs" />
     <Compile Include="Developmental methods\OneMaxTranslator.cs" />
+    <Compile Include="Miscellaneous\Network.cs" />
     <Compile Include="Simulator.cs">
       <SubType>Form</SubType>
     </Compile>
