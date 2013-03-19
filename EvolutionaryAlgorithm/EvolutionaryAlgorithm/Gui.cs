@@ -457,7 +457,7 @@ namespace EvolutionaryAlgorithm
                 case "MinCog":
                     label2.Text = "Genotype size";
                     genotypeSize.Text = "272";
-                    genotypeSize.ReadOnly = false;
+                    genotypeSize.ReadOnly = true;
                     probLabel1.Visible = false;
                     problemComboBox1.Location = problemTextBox1.Location;
                     problemComboBox1.Visible = false;

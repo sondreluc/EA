@@ -96,7 +96,8 @@ namespace EvolutionaryAlgorithm.Evaluators.MinCogSimulator
 
             int direction = (left > right) ? -1 : 1;
 
-            double stopTreshold = 0.25;
+            double stopTreshold = 0.30;
+            double step = 1 - stopTreshold / 4;
             double diff = left - right;
             double absoluteDifference = Math.Abs(left - right);
 
@@ -106,7 +107,7 @@ namespace EvolutionaryAlgorithm.Evaluators.MinCogSimulator
                 return this.Velocity;
             }
 
-            if (absoluteDifference < 0.4)
+            if (absoluteDifference < 0.5)
             {
                 this.Velocity = 1 * direction;
                 return this.Velocity;

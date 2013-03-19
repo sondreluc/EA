@@ -17,7 +17,7 @@ namespace EvolutionaryAlgorithm
             //sn.EvolutionLoop();
             //Application.EnableVisualStyles();
             //Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Simulator());
+            //Application.Run(new Simulator(sn.TheOneAndOnly));
 
 
             Application.EnableVisualStyles();

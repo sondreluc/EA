@@ -63,7 +63,7 @@ namespace EvolutionaryAlgorithm
                     Thread.Sleep(100);
                     DrawArray(e.Graphics, sim.Board);
                 }
-                sim.CheckHits(0.80);
+                sim.CheckHits(0.8);
                 DrawArray(e.Graphics, sim.Board);
                 Thread.Sleep(100);
             }

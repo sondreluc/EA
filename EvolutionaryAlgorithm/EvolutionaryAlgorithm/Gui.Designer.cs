@@ -235,7 +235,7 @@
             this.crossoverRate.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.crossoverRate.Size = new System.Drawing.Size(89, 20);
             this.crossoverRate.TabIndex = 6;
-            this.crossoverRate.Text = "0,1";
+            this.crossoverRate.Text = "0,9";
             // 
             // label8
             // 
@@ -360,7 +360,7 @@
             this.populationSize.Size = new System.Drawing.Size(89, 20);
             this.populationSize.TabIndex = 2;
             this.populationSize.Tag = "";
-            this.populationSize.Text = "20";
+            this.populationSize.Text = "100";
             // 
             // groupBox2
             // 
