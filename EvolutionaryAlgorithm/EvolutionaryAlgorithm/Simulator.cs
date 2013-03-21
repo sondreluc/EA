@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -50,6 +51,7 @@ namespace EvolutionaryAlgorithm
                     System.Diagnostics.Debug.WriteLine(v.left.Name + " : " + v.right);
                 }
             }
+            testNet(phenotype);
         }
 
         private void Run(object sender, PaintEventArgs e)
@@ -91,6 +93,82 @@ namespace EvolutionaryAlgorithm
                             break;
                     }
                 }
+            }
+        }
+
+
+        public void testNet(MinCogPhenotype pheno)
+        {
+            MinCogAgent agent = new MinCogAgent(pheno);
+            List<bool[]> testInputs = new List<bool[]>();
+            bool[] input = new bool[5];
+            input[0] = true;
+            input[1] = true;
+            input[2] = true;
+            input[3] = true;
+            input[4] = true;
+            testInputs.Add(input);
+
+            bool[] input2 = new bool[5];
+            input[0] = false;
+            input[1] = false;
+            input[2] = false;
+            input[3] = false;
+            input[4] = false;
+            testInputs.Add(input2);
+
+            bool[] input3 = new bool[5];
+            input[0] = true;
+            input[1] = true;
+            input[2] = false;
+            input[3] = false;
+            input[4] = false;
+            testInputs.Add(input3);
+
+            bool[] input4 = new bool[5];
+            input[0] = false;
+            input[1] = true;
+            input[2] = true;
+            input[3] = false;
+            input[4] = false;
+            testInputs.Add(input4);
+
+            bool[] input5 = new bool[5];
+            input[0] = false;
+            input[1] = false;
+            input[2] = false;
+            input[3] = true;
+            input[4] = true;
+            testInputs.Add(input5);
+
+            bool[] input6 = new bool[5];
+            input[0] = false;
+            input[1] = false;
+            input[2] = true;
+            input[3] = true;
+            input[4] = true;
+            testInputs.Add(input6);
+
+            bool[] input7 = new bool[5];
+            input[0] = false;
+            input[1] = true;
+            input[2] = true;
+            input[3] = true;
+            input[4] = true;
+            testInputs.Add(input7);
+
+            bool[] input8 = new bool[5];
+            input[0] = true;
+            input[1] = true;
+            input[2] = true;
+            input[3] = true;
+            input[4] = false;
+            testInputs.Add(input8);
+            Debug.WriteLine("--------------------- Test -----------------------");
+            foreach (bool[] it in testInputs)
+            {
+                Debug.Write("--------------- Next input --------------------");
+                agent.SetNewPosition(input);
             }
         }
     }
