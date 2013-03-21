@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using EvolutionaryAlgorithm.Evaluators.MinCogSimulator;
+using EvolutionaryAlgorithm.Miscellaneous;
 using EvolutionaryAlgorithm.Phenotypes;
 using EvolutionaryAlgorithm.EvolutionaryAlgorithms;
 
