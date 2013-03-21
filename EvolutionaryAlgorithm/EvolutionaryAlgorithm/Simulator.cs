@@ -30,6 +30,26 @@ namespace EvolutionaryAlgorithm
             InitializeComponent();
             _random = new Random();
             sim = new MinCogSimulator(phenotype);
+            foreach (var h in phenotype.HiddenNodes)
+            {
+                System.Diagnostics.Debug.WriteLine("Hidden");
+                System.Diagnostics.Debug.WriteLine("g:" + h.Gain);
+                System.Diagnostics.Debug.WriteLine("t:" + h.TimeConstant);
+                foreach (var v in h.UpstreamConnections)
+                {
+                    System.Diagnostics.Debug.WriteLine(v.left.Name + " : " + v.right);
+                }
+            }
+            foreach (var h in phenotype.OutputNodes)
+            {
+                System.Diagnostics.Debug.WriteLine("Output");
+                System.Diagnostics.Debug.WriteLine("g:" + h.Gain);
+                System.Diagnostics.Debug.WriteLine("t:" + h.TimeConstant);
+                foreach (var v in h.UpstreamConnections)
+                {
+                    System.Diagnostics.Debug.WriteLine(v.left.Name + " : " + v.right);
+                }
+            }
         }
 
         private void Run(object sender, PaintEventArgs e)
