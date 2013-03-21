@@ -11,7 +11,7 @@ namespace EvolutionaryAlgorithm.Evaluators
         {
             var sim = new MinCogSimulator.MinCogSimulator((MinCogPhenotype)phenotype);
             sim.Simulate();
-            double score = sim.GoodHits - sim.BadHits*(1.5);
+            double score = sim.GoodHits - sim.BadHits;
             phenotype.Fitness = (score > 0) ? score : 0;
         }
 

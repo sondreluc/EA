@@ -48,8 +48,9 @@ namespace EvolutionaryAlgorithm
                 sim.CheckHits(0.8);
                 DrawArray(e.Graphics, sim.Board);
             }
-            System.Diagnostics.Debug.WriteLine(sim.BadHits);
-            System.Diagnostics.Debug.WriteLine(sim.GoodHits);
+            System.Diagnostics.Debug.WriteLine("Bad hits: "+sim.BadHits);
+            System.Diagnostics.Debug.WriteLine("Avoid: " + sim.Avoid);
+            System.Diagnostics.Debug.WriteLine("Good hits: "+sim.GoodHits);
         }
 
         public void DrawArray(Graphics g, int[,] array)

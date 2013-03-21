@@ -13,6 +13,9 @@ namespace EvolutionaryAlgorithm.Evaluators.MinCogSimulator
         {
             GoodHits = 0;
             BadHits = 0;
+            Avoid = 0;
+            Big = 0;
+            Round = 0;
             Agent = new MinCogAgent(phenotype);
             CurrentBlockSize = 0;
             for (int i = 0; i < Board.GetLength(0); i++)
@@ -27,10 +30,13 @@ namespace EvolutionaryAlgorithm.Evaluators.MinCogSimulator
 
         public int GoodHits { get; set; }
         public int BadHits { get; set; }
+        public int Avoid { get; set; }
         public MinCogAgent Agent { get; set; }
         public int CurrentBlockSize { get; set; }
         public int CurrentBlockXPos { get; set; }
         public int CurrentBlockYPos { get; set; }
+        public int Big { get; set; }
+        public int Round { get; set; }
 
         /*
         public void CheckForHit()
@@ -174,8 +180,18 @@ namespace EvolutionaryAlgorithm.Evaluators.MinCogSimulator
 
         public void SpawnBlock()
         {
-            CurrentBlockSize = _random.NextDouble() > (double) 1/3 ? _random.Next(1, 6) : 6;
+            CurrentBlockSize = (Big > 12) ? _random.Next(1, 6) : _random.Next(1, 7);
+            
+            if (CurrentBlockSize == 6)
+                Big++;
 
+            if (Big <= 12 && (13-Big)>=(40 - Round))
+            {
+                CurrentBlockSize = 6;
+                Big++;
+            }
+                
+            Round++;
             CurrentBlockXPos = _random.Next(30);
             CurrentBlockYPos = 0;
             for (int x = CurrentBlockXPos; x < CurrentBlockXPos + CurrentBlockSize; x++)
@@ -207,12 +223,12 @@ namespace EvolutionaryAlgorithm.Evaluators.MinCogSimulator
                     sensorReading[index++] = false;
             }
 
-            redrawAgent(0);
+            RedrawAgent(0);
             Agent.SetNewPosition(sensorReading);
-            redrawAgent(1);
+            RedrawAgent(1);
         }
 
-        public void redrawAgent(int val)
+        public void RedrawAgent(int val)
         {
             for (int x = Agent.CurrentPosition; x < Agent.CurrentPosition + 5; x++)
             {
@@ -241,6 +257,8 @@ namespace EvolutionaryAlgorithm.Evaluators.MinCogSimulator
 
             if (CurrentBlockSize == 6 && hits > 0)
                 BadHits++;
+            else if (CurrentBlockSize == 6)
+                Avoid++;
             else if (hitRatio >= threshold)
                 GoodHits++;
         }
