@@ -3,6 +3,7 @@ using System.Diagnostics;
 using EvolutionaryAlgorithm.Miscellaneous;
 using EvolutionaryAlgorithm.Phenotypes;
 
+
 namespace EvolutionaryAlgorithm.Evaluators.MinCogSimulator
 {
     public class MinCogAgent
@@ -53,6 +54,10 @@ namespace EvolutionaryAlgorithm.Evaluators.MinCogSimulator
             }
 
             int velocity = getVelocity(Pheno.OutputNodes[0].Output, Pheno.OutputNodes[1].Output);
+            //Debug.WriteLine("Input : [" + inputs[0] + ", " + inputs[1] + ",  " + inputs[2] + ", " + inputs[3] + ",  " + inputs[4] + "]");
+            //Debug.WriteLine("Output left: " + Pheno.OutputNodes[0].Output);
+            //Debug.WriteLine("Output right: " + Pheno.OutputNodes[1].Output);
+            //Debug.WriteLine("Speed: " + velocity);
             CurrentPosition = ((CurrentPosition + velocity) % 30 + 30) % 30;
         }
 
